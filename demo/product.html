@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Demo — Product Page</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      padding: 16px 24px;
+      background-color: #1A1A1A;
+      border-bottom: 2px solid #FFD700;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFD700;
+    }
+
+    header span {
+      font-size: 14px;
+      color: #E0E0E0;
+    }
+
+    main {
+      width: 100%;
+      max-width: 640px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* Product card */
+    .product-card {
+      background-color: #1A1A1A;
+      border: 1px solid #FFFFFF;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .product-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #FFFFFF;
+    }
+
+    .product-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FFD700;
+    }
+
+    .product-description {
+      font-size: 16px;
+      color: #E0E0E0;
+      line-height: 1.6;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 8px;
+    }
+
+    /* Buttons */
+    button {
+      font-family: inherit;
+      font-size: 16px;
+      font-weight: 600;
+      border: 2px solid transparent;
+      border-radius: 6px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: outline-offset 0.1s ease;
+    }
+
+    button:focus-visible {
+      outline: 3px solid #00B0FF;
+      outline-offset: 2px;
+    }
+
+    .btn-primary {
+      background-color: #FFD700;
+      color: #0A0A0A;
+      border-color: #FFD700;
+    }
+
+    .btn-primary:hover {
+      background-color: #FFC400;
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: #FFD700;
+      border-color: #FFD700;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 215, 0, 0.1);
+    }
+
+    /* Mystery button — intentionally has NO accessible name */
+    .btn-mystery {
+      background-color: #333333;
+      color: #333333; /* same as bg so no visible text */
+      border-color: #666666;
+      width: 48px;
+      height: 48px;
+      padding: 0;
+      border-radius: 50%;
+    }
+
+    .btn-mystery:hover {
+      border-color: #999999;
+    }
+
+    /* Section headings */
+    .section-heading {
+      font-size: 18px;
+      font-weight: 700;
+      color: #FFD700;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #333333;
+    }
+
+    /* Checkout section */
+    .checkout-section {
+      background-color: #1A1A1A;
+      border: 1px solid #FFFFFF;
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 14px;
+      color: #E0E0E0;
+      font-weight: 600;
+    }
+
+    .form-group input {
+      font-family: inherit;
+      font-size: 16px;
+      padding: 10px 12px;
+      border: 2px solid #FFFFFF;
+      border-radius: 6px;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+    }
+
+    .form-group input:focus-visible {
+      outline: 3px solid #00B0FF;
+      outline-offset: 2px;
+    }
+
+    .form-group input::placeholder {
+      color: #888888;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      width: 100%;
+      padding: 16px 24px;
+      text-align: center;
+      font-size: 14px;
+      color: #E0E0E0;
+      border-top: 1px solid #333333;
+    }
+
+    footer strong {
+      color: #FFD700;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>AllVoice Demo</h1>
+    <span>Product Page</span>
+  </header>
+
+  <main>
+    <!-- Product Card -->
+    <section class="product-card" aria-label="Product details">
+      <h2>Wireless Accessibility Headset</h2>
+      <p class="product-price">$79.99</p>
+      <p class="product-description">
+        Premium bone-conduction headset designed for screen reader users.
+        Open-ear design lets you hear your surroundings while listening to
+        spoken feedback. 20-hour battery, Bluetooth 5.3, lightweight titanium frame.
+      </p>
+      <div class="product-actions">
+        <button id="add-to-cart" class="btn-primary" type="button">Add to Cart</button>
+        <button id="buy-now" class="btn-secondary" type="button">Buy Now</button>
+        <!-- Mystery button: NO text, NO aria-label, NO title — unlabeled control -->
+        <button id="mystery-btn" class="btn-mystery" type="button"></button>
+      </div>
+    </section>
+
+    <!-- Checkout / Account Section (sensitive fields) -->
+    <section class="checkout-section" aria-label="Checkout information">
+      <h3 class="section-heading">Checkout</h3>
+
+      <div class="form-group">
+        <label for="password-field">Account Password</label>
+        <input
+          id="password-field"
+          type="password"
+          placeholder="Enter your password"
+          autocomplete="current-password"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="cc-number">Card Number</label>
+        <input
+          id="cc-number"
+          type="text"
+          placeholder="1234 5678 9012 3456"
+          autocomplete="cc-number"
+          inputmode="numeric"
+        />
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>AllVoice</strong> — Inclusive Browser Copilot &middot; Kiro Spark Challenge Demo
+  </footer>
+
+</body>
+</html>

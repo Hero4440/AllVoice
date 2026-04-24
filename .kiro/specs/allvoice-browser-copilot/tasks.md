@@ -187,16 +187,16 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Checkpoint pipeline state to `chrome.storage.local` for service worker restart recovery
     - _Requirements: 10.2, 10.3, 10.4, 8.1, 12.4_
 
-- [ ] 14. Voice Capture
-  - [ ] 14.1 Implement `createVoiceCapture()` in `src/popup/voiceCapture.ts`
+- [x] 14. Voice Capture
+  - [x] 14.1 Implement `createVoiceCapture()` in `src/popup/voiceCapture.ts`
     - Initialize `webkitSpeechRecognition` with `continuous: false`, `interimResults: false`, `lang: 'en-US'`
     - Provide `start()` and `stop()` methods
     - Callbacks: `onTranscript` (sends transcript to service worker), `onError` (announces via TTS, logs to audit), `onStateChange` (updates listening indicator)
     - Handle Web Speech API unavailability gracefully
     - _Requirements: 1.1, 1.2, 1.4, 1.5_
 
-- [ ] 15. React Popup UI
-  - [ ] 15.1 Implement main `Popup.tsx` component
+- [x] 15. React Popup UI
+  - [x] 15.1 Implement main `Popup.tsx` component
     - Root React component that renders VoiceButton, ResponsePanel, and navigation to AuditLogViewer and EthicsRulesViewer
     - Manage listening state, response messages, and high-contrast mode preference
     - Load preferences from `chrome.storage.sync` on mount
@@ -206,20 +206,20 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Escape key closes popup and returns focus to page
     - _Requirements: 8.2, 8.3, 8.4, 8.5, 9.1, 9.2, 9.3, 9.4_
 
-  - [ ] 15.2 Implement `VoiceButton.tsx` component
+  - [x] 15.2 Implement `VoiceButton.tsx` component
     - Toggle microphone on/off button with high-contrast styling
     - Display visible listening indicator when mic is active
     - Update ARIA live region to announce "listening" / "stopped listening" to screen readers
     - Minimum 16px font, 7:1 contrast ratio
     - _Requirements: 1.1, 1.3, 1.4, 8.2, 8.3_
 
-  - [ ] 15.3 Implement `ResponsePanel.tsx` component
+  - [x] 15.3 Implement `ResponsePanel.tsx` component
     - Display response messages in high-contrast panel (min 16px font, 7:1 contrast)
     - Color-code by response type: success (green), blocked (red/orange), error (red), info (blue) — all meeting contrast requirements
     - Update ARIA live region (`aria-live="assertive"`) so screen readers announce responses without focus change
     - _Requirements: 6.5, 6.6, 9.1, 9.3_
 
-  - [ ] 15.4 Implement `AuditLogViewer.tsx` component
+  - [x] 15.4 Implement `AuditLogViewer.tsx` component
     - Fetch audit log entries via `getAuditLog()`
     - Display as accessible list sorted newest-first
     - Each entry shows: timestamp, action, ethics decision, result summary
@@ -227,15 +227,15 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Screen-reader compatible with ARIA attributes (role="list", role="listitem")
     - _Requirements: 7.4, 8.3_
 
-  - [ ] 15.5 Create `src/styles/globals.css` with Tailwind high-contrast theme
+  - [x] 15.5 Create `src/styles/globals.css` with Tailwind high-contrast theme
     - Define high-contrast color palette (foreground/background 7:1+ ratio)
     - Define standard theme (4.5:1 minimum ratio) for when high contrast is toggled off
     - Minimum font sizes: 16px body, 14px secondary labels
     - Focus indicator styles: 3px outline, 4.5:1 contrast
     - _Requirements: 9.1, 9.2, 9.3, 8.2_
 
-- [ ] 16. Demo Pages
-  - [ ] 16.1 Create `demo/product.html`
+- [x] 16. Demo Pages
+  - [x] 16.1 Create `demo/product.html`
     - Include "Add to Cart" button (`id="add-to-cart"`)
     - Include "Buy Now" button (`id="buy-now"`)
     - Include mystery button (`id="mystery-btn"`) with no text, no aria-label, no title — the unlabeled control
@@ -243,7 +243,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Basic page styling for demo presentation
     - _Requirements: 13.1, 13.3, 13.4_
 
-  - [ ] 16.2 Create `demo/chat.html`
+  - [x] 16.2 Create `demo/chat.html`
     - Include chat composer input field (`id="chat-composer"`, `type="text"`)
     - Include "Send" button (`id="send-btn"`)
     - Basic page styling for demo presentation
@@ -252,8 +252,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
 - [ ] 17. Checkpoint - Full extension functional
   - Ensure the extension builds, loads in Chrome, and the demo pages work with voice commands. Verify the Ethics Logic Gate blocks privacy-violating intents on demo pages and the audit log records violations. Ask the user if questions arise.
 
-- [ ] 18. Ethics Rules Viewer
-  - [ ] 18.1 Implement `EthicsRulesViewer.tsx` component
+- [x] 18. Ethics Rules Viewer
+  - [x] 18.1 Implement `EthicsRulesViewer.tsx` component
     - Display all active ethics rules in an accessible list
     - Each rule shows: name, description, status (active)
     - Screen-reader compatible with ARIA attributes
@@ -271,15 +271,15 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Reject malformed context with descriptive error and log rejection to Audit_Log
     - _Requirements: 12.4_
 
-- [ ] 20. Keyboard shortcuts and accessibility polish
-  - [ ] 20.1 Wire keyboard shortcuts in service worker
+- [x] 20. Keyboard shortcuts and accessibility polish
+  - [x] 20.1 Wire keyboard shortcuts in service worker
     - `Alt+Shift+V`: toggle microphone (send message to popup)
     - `Alt+Shift+L`: open audit log view
     - `Alt+Shift+C`: toggle high-contrast mode (persist to `chrome.storage.sync`)
     - Escape key handling in popup (close and return focus)
     - _Requirements: 8.1, 8.4, 8.5, 9.4_
 
-  - [ ] 20.2 Accessibility audit pass on all UI components
+  - [x] 20.2 Accessibility audit pass on all UI components
     - Verify all interactive elements have visible focus indicators (3px outline, 4.5:1 contrast)
     - Verify all elements have appropriate ARIA attributes (role, label, live region)
     - Verify logical tab order with no keyboard traps
