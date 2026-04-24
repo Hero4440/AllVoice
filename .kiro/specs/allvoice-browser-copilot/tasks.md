@@ -6,8 +6,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
 
 ## Tasks
 
-- [ ] 1. Project scaffolding and build setup
-  - [ ] 1.1 Initialize project with package.json, tsconfig.json, Vite config, and Tailwind CSS
+- [x] 1. Project scaffolding and build setup
+  - [x] 1.1 Initialize project with package.json, tsconfig.json, Vite config, and Tailwind CSS
     - Create `package.json` with dependencies: react, react-dom, tailwindcss, vite, @crxjs/vite-plugin (or vite-plugin-chrome-extension), typescript
     - Create `tsconfig.json` with strict mode, JSX support, Chrome extension type declarations
     - Create `vite.config.ts` configured for Chrome extension build (CRXJS plugin)
@@ -15,7 +15,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Create `src/styles/globals.css` with Tailwind directives and high-contrast CSS custom properties
     - _Requirements: 10.1, 10.2, 9.1_
 
-  - [ ] 1.2 Create manifest.json for Manifest V3
+  - [x] 1.2 Create manifest.json for Manifest V3
     - Declare permissions: `activeTab`, `tts`, `storage`, `scripting`
     - Configure service worker background script at `src/background/serviceWorker.ts`
     - Configure content script at `src/content/contentScript.ts` matching `<all_urls>`
@@ -24,13 +24,13 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Add placeholder icon references (16, 48, 128)
     - _Requirements: 10.1, 10.2, 8.1_
 
-  - [ ] 1.3 Create popup.html entry point and placeholder icon files
+  - [x] 1.3 Create popup.html entry point and placeholder icon files
     - Create `popup.html` that loads the React popup app
     - Create placeholder SVG/PNG icons at `icons/allvoice-16.png`, `icons/allvoice-48.png`, `icons/allvoice-128.png`
     - _Requirements: 10.1_
 
-- [ ] 2. Core TypeScript interfaces and types
-  - [ ] 2.1 Define all shared pipeline interfaces in `src/pipeline/types.ts`
+- [x] 2. Core TypeScript interfaces and types
+  - [x] 2.1 Define all shared pipeline interfaces in `src/pipeline/types.ts`
     - `PipelineContext` interface with all six stage fields (timestamp, rawTranscript, intent, browserState, ethicsDecision, executionResult, response)
     - `Intent` interface with action, target, parameters, rawTranscript
     - `ActionType` union type with all 8 action types (describe_screen, add_to_cart, purchase, draft_message, send_message, confirm_pending, click_unlabeled, unrecognized)

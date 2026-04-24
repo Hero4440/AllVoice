@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * AllVoice High-Contrast Theme
+ * Default: 7:1+ contrast ratio (WCAG AAA)
+ * Standard: 4.5:1 minimum (WCAG AA) — toggled via .standard-contrast
+ */
+
+@layer base {
+  :root {
+    /* High-contrast mode (DEFAULT) */
+    --av-bg: #0A0A0A;
+    --av-surface: #1A1A1A;
+    --av-text: #FFFFFF;
+    --av-text-secondary: #E0E0E0;
+    --av-accent: #FFD700;
+    --av-focus: #00B0FF;
+    --av-success: #00E676;
+    --av-error: #FF6B6B;
+    --av-blocked: #FFA726;
+    --av-info: #40C4FF;
+    --av-border: #FFFFFF;
+
+    /* Typography */
+    --av-font-body: 16px;
+    --av-font-label: 14px;
+    --av-font-heading: 20px;
+
+    /* Focus indicators */
+    --av-focus-width: 3px;
+    --av-focus-offset: 2px;
+  }
+
+  .standard-contrast {
+    --av-bg: #FFFFFF;
+    --av-surface: #F5F5F5;
+    --av-text: #212121;
+    --av-text-secondary: #616161;
+    --av-accent: #1565C0;
+    --av-focus: #1565C0;
+    --av-success: #2E7D32;
+    --av-error: #C62828;
+    --av-blocked: #E65100;
+    --av-info: #0277BD;
+    --av-border: #424242;
+  }
+
+  body {
+    background-color: var(--av-bg);
+    color: var(--av-text);
+    font-size: var(--av-font-body);
+    line-height: 1.5;
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  }
+
+  /* Global focus indicator — 3px outline, 4.5:1+ contrast */
+  *:focus-visible {
+    outline: var(--av-focus-width) solid var(--av-focus);
+    outline-offset: var(--av-focus-offset);
+  }
+}

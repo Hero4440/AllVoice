@@ -1,0 +1,52 @@
+{
+  "manifest_version": 3,
+  "name": "AllVoice Browser Copilot",
+  "version": "1.0.0",
+  "description": "Inclusive browser copilot for blind and low-vision users",
+  "permissions": ["activeTab", "tts", "storage", "scripting"],
+  "background": {
+    "service_worker": "src/background/serviceWorker.ts"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icons/allvoice-128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["src/content/contentScript.ts"],
+      "run_at": "document_idle"
+    }
+  ],
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+P"
+      },
+      "description": "Open AllVoice popup"
+    },
+    "toggle-microphone": {
+      "suggested_key": {
+        "default": "Alt+Shift+V"
+      },
+      "description": "Toggle voice input"
+    },
+    "open-audit-log": {
+      "suggested_key": {
+        "default": "Alt+Shift+L"
+      },
+      "description": "Open audit log"
+    },
+    "toggle-contrast": {
+      "suggested_key": {
+        "default": "Alt+Shift+C"
+      },
+      "description": "Toggle high contrast mode"
+    }
+  },
+  "icons": {
+    "16": "icons/allvoice-16.png",
+    "48": "icons/allvoice-48.png",
+    "128": "icons/allvoice-128.png"
+  }
+}

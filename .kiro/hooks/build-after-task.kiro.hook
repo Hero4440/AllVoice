@@ -8,7 +8,7 @@
   },
   "then": {
     "type": "runCommand",
-    "command": "npm run build",
+    "command": "export NVM_DIR=\"$HOME/.nvm\" && [ -s \"$NVM_DIR/nvm.sh\" ] && . \"$NVM_DIR/nvm.sh\" && npm run build",
     "timeout": 60
   }
 }
