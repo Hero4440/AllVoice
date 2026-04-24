@@ -44,7 +44,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - `UserPreferences` interface with highContrastMode, microphoneShortcut, auditLogRetentionDays
     - _Requirements: 12.1, 12.2, 12.3, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1_
 
-- [ ] 3. Checkpoint - Verify build and types
+- [x] 3. Checkpoint - Verify build and types
   - Ensure the project builds with `npm run build` (or equivalent), all types compile cleanly. Ask the user if questions arise.
 
 - [ ] 4. Ethics Logic Gate — the challenge constraint
@@ -119,8 +119,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Implement `buildSelector()` helper for generating unique CSS selectors
     - _Requirements: 3.1, 3.2, 3.3, 3.4, 12.2_
 
-- [ ] 7. Pipeline Orchestrator
-  - [ ] 7.1 Implement `runPipeline()` in `src/pipeline/orchestrator.ts`
+- [x] 7. Pipeline Orchestrator
+  - [x] 7.1 Implement `runPipeline()` in `src/pipeline/orchestrator.ts`
     - Accept transcript, observeBrowser callback, executeAction callback
     - Create initial `PipelineContext` with timestamp and rawTranscript
     - Execute stages in order: parseIntent → observeBrowser → evaluateEthics → (conditional) executeAction → generateResponse → logEntry
@@ -168,15 +168,15 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
 - [ ] 11. Checkpoint - Core pipeline complete
   - Ensure all pipeline stages compile and unit tests pass. Verify the Ethics Logic Gate blocks privacy-violating intents. Ask the user if questions arise.
 
-- [ ] 12. Content Script entry point and message handling
-  - [ ] 12.1 Implement `src/content/contentScript.ts`
+- [x] 12. Content Script entry point and message handling
+  - [x] 12.1 Implement `src/content/contentScript.ts`
     - Listen for messages from service worker via `chrome.runtime.onMessage`
     - Handle `OBSERVE_BROWSER` message: call `observeBrowser()`, send response
     - Handle `EXECUTE_ACTION` message: call `executeAction()`, send response
     - _Requirements: 3.1, 5.1, 10.1_
 
-- [ ] 13. Service Worker entry point and message routing
-  - [ ] 13.1 Implement `src/background/serviceWorker.ts`
+- [x] 13. Service Worker entry point and message routing
+  - [x] 13.1 Implement `src/background/serviceWorker.ts`
     - Listen for `VOICE_TRANSCRIPT` messages from popup
     - On transcript received: call `runPipeline()` with content script callbacks
     - Implement `observeBrowser` callback: send `OBSERVE_BROWSER` to active tab content script via `chrome.tabs.sendMessage`, return response
