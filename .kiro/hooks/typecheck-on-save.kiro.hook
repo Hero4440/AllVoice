@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "TypeScript Type Check",
+  "description": "Runs TypeScript compiler in noEmit mode when any .ts or .tsx file is saved to catch type errors early.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npx tsc --noEmit",
+    "timeout": 30
+  }
+}

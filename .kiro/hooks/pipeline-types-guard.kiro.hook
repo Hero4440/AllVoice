@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Pipeline Types Change Guard",
+  "description": "When pipeline type definitions are modified, reminds the agent to check that all pipeline stages still conform to the updated interfaces.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/pipeline/types.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Pipeline type definitions were just modified. These interfaces are shared across all 6 pipeline stages. Verify that: 1) PipelineContext still has all required fields (timestamp, rawTranscript, intent, browserState, ethicsDecision, executionResult, response), 2) All pipeline stages (intentParser, browserObserver, ethicsGate, safeExecutor, responseGenerator, auditLog) still conform to the updated types, 3) The round-trip serialization property (JSON serialize/deserialize equivalence) is preserved."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Spec Completion Test Generator",
+  "description": "After each Kiro spec task is marked complete, an agent examines the newly implemented code and generates unit tests for any new functions or logic that lack test coverage. Tests follow the project's Vitest setup and cover the AllVoice pipeline stages, ethics rules, and utility functions.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A spec task was just completed. Review what was implemented and generate missing unit tests:\n\n1. Identify all new or modified exported functions/classes from the task.\n2. Check if corresponding test files exist in `tests/unit/` or `tests/property/`.\n3. For any function lacking test coverage, generate tests that:\n   - Use Vitest (import { describe, it, expect } from 'vitest')\n   - Test happy path, edge cases, and error conditions\n   - For ethics gate functions: verify block/allow decisions, privacyViolation flags, and determinism\n   - For pipeline stages: verify PipelineContext is correctly transformed\n   - For UI components: verify ARIA attributes and accessibility properties\n   - Mock Chrome APIs (chrome.storage, chrome.tts, chrome.runtime) where needed\n4. Place test files following the project convention: `tests/unit/<moduleName>.test.ts` or `tests/property/<moduleName>.property.test.ts`\n5. Ensure all tests pass TypeScript strict mode.\n\nGenerate the test files now."
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "name": "Auto Code Review on Save",
+  "description": "When any source file (.ts, .tsx, .css, .html, .json) is saved, an agent reviews the changes for code smells, security issues, and violations of the AllVoice coding standards — including TypeScript strict mode, no `any` types, ethics gate purity, ARIA/a11y requirements, naming conventions, and Chrome extension patterns.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/*.ts",
+      "**/*.tsx",
+      "**/*.css",
+      "**/*.html",
+      "**/*.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A source file was just saved. Review the file for:\n\n**Code Smells:** unused variables, dead code, overly complex functions, duplicated logic, magic numbers/strings.\n\n**Security Issues:** unsanitized DOM manipulation, eval() usage, hardcoded secrets, unsafe chrome.storage patterns, XSS vectors in content scripts.\n\n**Team Convention Violations (AllVoice standards):**\n- TypeScript: no `any` types (use `unknown` + type guards), explicit return types on exports, `const` over `let`, never `var`\n- Pipeline: PipelineContext only mutated in orchestrator, evaluateEthics must stay synchronous/pure, Safe_Executor never called on \"block\" decisions\n- Chrome Extension: state checkpointed to chrome.storage.local, storage keys prefixed with `allvoice_`, correct messaging patterns (runtime.sendMessage vs tabs.sendMessage)\n- Accessibility: ARIA attributes on all interactive elements, minimum font sizes (16px body, 14px labels), 7:1 contrast ratio default, focus indicators (3px outline, 4.5:1 ratio), aria-live regions for dynamic content\n- Naming: camelCase files, PascalCase components/interfaces (no I prefix), SCREAMING_SNAKE_CASE for ethics rule IDs and constants\n- React: functional components with hooks only, Tailwind for styling, Escape key closes popup\n\nFlag anything worth addressing. Be concise — just list the issues with file locations and suggested fixes. Skip if the file looks clean."
+  }
+}

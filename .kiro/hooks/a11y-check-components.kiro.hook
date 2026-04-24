@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Accessibility Review on Component Change",
+  "description": "When React popup components are edited, reminds the agent to verify ARIA attributes, focus management, contrast ratios, and keyboard navigation.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/popup/*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A React UI component was just modified. This extension is for blind and low-vision users. Verify: 1) All interactive elements have appropriate ARIA attributes (role, aria-label, aria-live), 2) Focus indicators are present (3px outline, 4.5:1 contrast), 3) Text meets minimum font sizes (16px body, 14px labels), 4) High-contrast mode colors maintain 7:1 ratio, 5) No keyboard traps exist and tab order is logical."
+  }
+}

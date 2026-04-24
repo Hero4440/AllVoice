@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "Ethics Gate Change Review",
+  "description": "When ethics gate or ethics rules files are edited, reminds the agent to verify that privacy-stopping behavior is preserved and no rules are weakened.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/ethicsGate.ts",
+      "**/ethicsRules.ts",
+      "**/piiDetector.ts"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "The Ethics Logic Gate or ethics rules file was just modified. This is the MANDATORY challenge constraint. Verify that: 1) All privacy rules (PRIVACY_SENSITIVE_FIELD, PRIVACY_PII_SUBMISSION) still produce 'block' decisions with privacyViolation: true, 2) The evaluateEthics function is still a pure synchronous function, 3) No rule was accidentally weakened or removed, 4) The pipeline still halts before Safe_Executor on privacy violations."
+  }
+}

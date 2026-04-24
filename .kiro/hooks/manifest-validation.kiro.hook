@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Manifest V3 Validation",
+  "description": "When manifest.json is edited, reminds the agent to verify Manifest V3 compliance including required permissions and service worker config.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "**/manifest.json"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "manifest.json was just modified. Verify Manifest V3 compliance: 1) manifest_version is 3, 2) Required permissions are present: activeTab, tts, storage, scripting, 3) Background uses service_worker (not scripts), 4) Content scripts and popup are correctly configured, 5) Keyboard commands are defined (toggle-microphone, open-audit-log, toggle-contrast), 6) Icons are referenced correctly."
+  }
+}

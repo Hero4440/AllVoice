@@ -1,0 +1,14 @@
+{
+  "enabled": true,
+  "name": "Build Check After Task",
+  "description": "Runs the project build after each spec task is completed to catch build errors early.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "runCommand",
+    "command": "npm run build",
+    "timeout": 60
+  }
+}
