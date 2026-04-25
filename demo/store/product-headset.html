@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Store — Wireless Accessibility Headset</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>AllVoice Store</h1>
+      <span class="tagline">Accessible Shopping Demo</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="nav-link" aria-label="Back to store home">🏠 Home</a>
+      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> &rsaquo; Wireless Accessibility Headset
+    </nav>
+
+    <section class="product-detail" aria-label="Product details for Wireless Accessibility Headset">
+      <div class="product-image" aria-hidden="true">🎧</div>
+      <h2>Wireless Accessibility Headset</h2>
+      <p class="product-price">$79.99</p>
+      <p class="product-desc">
+        Premium bone-conduction headset designed specifically for screen reader users.
+        The open-ear design lets you hear your surroundings while listening to spoken
+        feedback from assistive technology. Perfect for navigating the web hands-free.
+      </p>
+
+      <h3 style="color:#FFD700;font-size:16px;margin-top:8px;">Specifications</h3>
+      <ul class="specs-list">
+        <li><strong>Battery:</strong> 20 hours continuous use</li>
+        <li><strong>Connectivity:</strong> Bluetooth 5.3, USB-C charging</li>
+        <li><strong>Weight:</strong> 29g titanium frame</li>
+        <li><strong>Compatibility:</strong> Works with all screen readers (JAWS, NVDA, VoiceOver)</li>
+        <li><strong>Water resistance:</strong> IP55 rated</li>
+      </ul>
+
+      <div class="product-actions">
+        <button type="button" class="btn-primary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add Wireless Accessibility Headset to cart">Add to Cart</button>
+        <a href="cart.html" class="btn-secondary" aria-label="Go to cart">View Cart</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>

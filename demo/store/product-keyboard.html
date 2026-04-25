@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Store — Braille Display Keyboard</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>AllVoice Store</h1>
+      <span class="tagline">Accessible Shopping Demo</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="nav-link" aria-label="Back to store home">🏠 Home</a>
+      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> &rsaquo; Braille Display Keyboard
+    </nav>
+
+    <section class="product-detail" aria-label="Product details for Braille Display Keyboard">
+      <div class="product-image" aria-hidden="true">⌨️</div>
+      <h2>Braille Display Keyboard</h2>
+      <p class="product-price">$249.99</p>
+      <p class="product-desc">
+        40-cell refreshable braille display with a full QWERTY keyboard built in.
+        Read web content, documents, and code in braille while typing at full speed.
+        Connects via USB-C or Bluetooth to any device.
+      </p>
+
+      <h3 style="color:#FFD700;font-size:16px;margin-top:8px;">Specifications</h3>
+      <ul class="specs-list">
+        <li><strong>Braille cells:</strong> 40 refreshable cells</li>
+        <li><strong>Keyboard:</strong> Full QWERTY with 8-dot braille input</li>
+        <li><strong>Connectivity:</strong> USB-C + Bluetooth 5.0 (5 device pairing)</li>
+        <li><strong>Battery:</strong> 30 hours, USB-C fast charging</li>
+        <li><strong>Compatibility:</strong> Windows, macOS, iOS, Android</li>
+      </ul>
+
+      <div class="product-actions">
+        <button type="button" class="btn-primary add-to-cart-btn" data-product="keyboard" data-name="Braille Display Keyboard" data-price="249.99" aria-label="Add Braille Display Keyboard to cart">Add to Cart</button>
+        <a href="cart.html" class="btn-secondary" aria-label="Go to cart">View Cart</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>

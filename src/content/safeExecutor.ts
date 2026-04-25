@@ -51,6 +51,12 @@ function findTargetElement(
           e => /send/i.test(e.textContent) && e.tagName === 'button',
         ) ?? null
       );
+    case 'checkout':
+      return (
+        browserState.interactiveElements.find(e =>
+          /checkout/i.test(e.textContent) || /checkout/i.test(e.ariaLabel ?? ''),
+        ) ?? null
+      );
     default:
       return null;
   }
@@ -159,6 +165,86 @@ function confirmPending(
   return { status: 'success', details: 'Pending action confirmed.' };
 }
 
+/**
+ * Navigates to a product detail page or cart page.
+ * Searches the live DOM for matching links, then falls back to relative URL.
+ */
+function navigateToPage(intent: Intent, _browserState: BrowserState): ExecutionResult {
+  const targetPage = intent.parameters['targetPage'] ?? '';
+
+  // Search the live DOM for an anchor whose href contains the target page
+  const allLinks = Array.from(document.querySelectorAll('a')) as HTMLAnchorElement[];
+  const matchingLink = allLinks.find(a =>
+    a.getAttribute('href')?.includes(targetPage) ||
+    a.href?.includes(targetPage),
+  );
+
+  if (matchingLink) {
+    matchingLink.click();
+    return { status: 'success', details: `Navigating to ${targetPage}.` };
+  }
+
+  // Fallback: try direct navigation relative to current page
+  const currentUrl = window.location.href;
+  const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+  const page = targetPage.endsWith('.html') ? targetPage : `${targetPage}.html`;
+  window.location.href = `${baseUrl}${page}`;
+  return { status: 'success', details: `Navigating to ${targetPage}.` };
+}
+
+/**
+ * Navigates to the checkout page.
+ * Searches the live DOM for a checkout link, then falls back to relative URL.
+ */
+function goToCheckout(_intent: Intent, _browserState: BrowserState): ExecutionResult {
+  // Search the live DOM for a checkout link
+  const allLinks = Array.from(document.querySelectorAll('a')) as HTMLAnchorElement[];
+  const checkoutLink = allLinks.find(a =>
+    /checkout/i.test(a.textContent ?? '') ||
+    /checkout/i.test(a.getAttribute('aria-label') ?? '') ||
+    /checkout/i.test(a.getAttribute('href') ?? ''),
+  );
+
+  if (checkoutLink) {
+    checkoutLink.click();
+    return { status: 'success', details: 'Proceeding to checkout.' };
+  }
+
+  // Also check buttons
+  const allButtons = Array.from(document.querySelectorAll('button')) as HTMLButtonElement[];
+  const checkoutBtn = allButtons.find(b =>
+    /checkout/i.test(b.textContent ?? '') ||
+    /checkout/i.test(b.getAttribute('aria-label') ?? ''),
+  );
+
+  if (checkoutBtn) {
+    checkoutBtn.click();
+    return { status: 'success', details: 'Proceeding to checkout.' };
+  }
+
+  // Fallback: direct navigation
+  const currentUrl = window.location.href;
+  const baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf('/') + 1);
+  window.location.href = `${baseUrl}checkout.html`;
+  return { status: 'success', details: 'Proceeding to checkout.' };
+}
+
+/**
+ * Goes back to the previous page or home.
+ */
+function goBack(_intent: Intent, _browserState: BrowserState): ExecutionResult {
+  // Try to find a home link
+  const homeLink = document.querySelector('a[href="index.html"], a[href*="index.html"]') as HTMLAnchorElement | null;
+  if (homeLink) {
+    homeLink.click();
+    return { status: 'success', details: 'Going back to the home page.' };
+  }
+
+  // Fallback: browser back
+  window.history.back();
+  return { status: 'success', details: 'Going back to the previous page.' };
+}
+
 // ---------------------------------------------------------------------------
 // Public API
 // ---------------------------------------------------------------------------
@@ -191,6 +277,15 @@ export function executeAction(
 
     case 'confirm_pending':
       return confirmPending(intent, browserState);
+
+    case 'navigate':
+      return navigateToPage(intent, browserState);
+
+    case 'checkout':
+      return goToCheckout(intent, browserState);
+
+    case 'go_back':
+      return goBack(intent, browserState);
 
     default:
       return {

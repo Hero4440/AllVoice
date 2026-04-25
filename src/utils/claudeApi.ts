@@ -16,7 +16,7 @@ const MODEL = 'claude-sonnet-4-20250514';
  * Replace with your own Anthropic API key.
  * TODO: Move to secure storage before any public release.
  */
-const API_KEY = 'YOUR_API_KEY_HERE';
+const API_KEY = 'api key';
 
 /**
  * Sends a message to Claude and returns the text response.

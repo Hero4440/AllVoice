@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Store — Checkout</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>AllVoice Store</h1>
+      <span class="tagline">Accessible Shopping Demo</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="nav-link" aria-label="Back to store home">🏠 Home</a>
+      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> &rsaquo; <a href="cart.html">Cart</a> &rsaquo; Checkout
+    </nav>
+
+    <h2 class="section-heading">Checkout</h2>
+
+    <!-- Order Summary -->
+    <section class="checkout-section" aria-label="Order summary">
+      <h3 style="color:#FFD700;font-size:18px;font-weight:700;">Order Summary</h3>
+      <div id="checkout-summary">
+        <!-- Rendered by store.js -->
+      </div>
+    </section>
+
+    <!-- Payment Section — blocked by ethics gate -->
+    <section class="checkout-section" aria-label="Payment information" style="margin-top:24px;">
+      <h3 style="color:#FFD700;font-size:18px;font-weight:700;">Payment</h3>
+
+      <div class="form-group">
+        <label for="card-name">Name on Card</label>
+        <input id="card-name" type="text" placeholder="John Doe" autocomplete="cc-name">
+      </div>
+
+      <div class="form-group">
+        <label for="card-number">Card Number</label>
+        <input id="card-number" type="text" placeholder="1234 5678 9012 3456" autocomplete="cc-number" inputmode="numeric">
+      </div>
+
+      <div class="form-group">
+        <label for="card-cvc">CVC</label>
+        <input id="card-cvc" type="password" placeholder="123" autocomplete="cc-csc">
+      </div>
+
+      <button type="button" id="pay-now-btn" class="btn-primary" aria-label="Complete payment" style="margin-top:8px;">
+        Complete Payment
+      </button>
+    </section>
+
+    <!-- Authorization Warning -->
+    <div class="auth-warning" role="alert" aria-live="assertive" style="margin-top:24px;">
+      <span class="icon" aria-hidden="true">🔒</span>
+      <span class="title">Authorized User Required</span>
+      <span class="message">AllVoice cannot interact with payment fields to protect your privacy. An authorized user must complete this step manually.</span>
+    </div>
+  </main>
+
+  <footer>
+    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>

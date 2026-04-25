@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Store — Home</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>AllVoice Store</h1>
+      <span class="tagline">Accessible Shopping Demo</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
+      <a href="checkout.html" class="nav-link" aria-label="Proceed to checkout">
+        💳 Checkout
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <h2 class="section-heading">Featured Products</h2>
+
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <article class="product-card" aria-label="Wireless Accessibility Headset, $79.99">
+        <div class="product-image" aria-hidden="true">🎧</div>
+        <h3 class="product-name">Wireless Accessibility Headset</h3>
+        <p class="product-price">$79.99</p>
+        <p class="product-desc">Premium bone-conduction headset for screen reader users. Open-ear design, 20hr battery.</p>
+        <div class="product-actions">
+          <a href="product-headset.html" class="btn-primary" aria-label="Tell me about Wireless Accessibility Headset">View Details</a>
+          <button type="button" class="btn-secondary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add Wireless Accessibility Headset to cart">Add to Cart</button>
+        </div>
+      </article>
+
+      <!-- Product 2 -->
+      <article class="product-card" aria-label="Braille Display Keyboard, $249.99">
+        <div class="product-image" aria-hidden="true">⌨️</div>
+        <h3 class="product-name">Braille Display Keyboard</h3>
+        <p class="product-price">$249.99</p>
+        <p class="product-desc">40-cell refreshable braille display with full keyboard. USB-C and Bluetooth.</p>
+        <div class="product-actions">
+          <a href="product-keyboard.html" class="btn-primary" aria-label="Tell me about Braille Display Keyboard">View Details</a>
+          <button type="button" class="btn-secondary add-to-cart-btn" data-product="keyboard" data-name="Braille Display Keyboard" data-price="249.99" aria-label="Add Braille Display Keyboard to cart">Add to Cart</button>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>

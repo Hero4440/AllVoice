@@ -117,8 +117,10 @@ function createExecuteActionCallback(
  * delivering the response to the popup.
  */
 async function handleVoiceTranscript(transcript: string): Promise<void> {
+  console.log('[AllVoice] handleVoiceTranscript called:', transcript);
   const tab = await getActiveTab();
   const tabId = tab.id as number;
+  console.log('[AllVoice] Active tab:', tabId, tab.url);
 
   // Checkpoint: pipeline starting
   const initialState: PipelineContext = {
@@ -143,7 +145,10 @@ async function handleVoiceTranscript(transcript: string): Promise<void> {
 
   // Deliver response to popup via TTS + message
   if (context.response) {
-    await deliverResponse(context.response);
+    console.log('[AllVoice] Delivering response:', context.response.type, context.response.text.slice(0, 80));
+    deliverResponse(context.response);
+  } else {
+    console.warn('[AllVoice] No response generated!');
   }
 
   // Clear checkpoint after successful delivery
@@ -169,6 +174,7 @@ chrome.runtime.onMessage.addListener(
         .catch((err: unknown) => {
           const errorMessage =
             err instanceof Error ? err.message : String(err);
+          console.error('[AllVoice] Pipeline error:', errorMessage);
           sendResponse({ success: false, error: errorMessage });
         });
       // Return true to indicate async sendResponse

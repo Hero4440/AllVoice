@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Store — Your Cart</title>
+  <link rel="stylesheet" href="store.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-left">
+      <h1>AllVoice Store</h1>
+      <span class="tagline">Accessible Shopping Demo</span>
+    </div>
+    <nav aria-label="Main navigation">
+      <a href="index.html" class="nav-link" aria-label="Back to store home">🏠 Home</a>
+      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
+        🛒 Cart (<span id="cart-count">0</span>)
+      </a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a> &rsaquo; Your Cart
+    </nav>
+
+    <h2 class="section-heading">Your Cart</h2>
+
+    <div id="cart-items-container" aria-label="Cart contents">
+      <!-- Rendered by store.js -->
+    </div>
+  </main>
+
+  <footer>
+    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  </footer>
+
+  <script src="store.js"></script>
+</body>
+</html>
