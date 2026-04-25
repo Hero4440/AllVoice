@@ -9,11 +9,25 @@ vi.mock('../../src/pipeline/intentParser', () => ({
     parameters: {},
     rawTranscript,
   }),
+  parseIntentWithAI: async (rawTranscript: string): Promise<Intent> => ({
+    action: 'add_to_cart',
+    target: '#add-to-cart',
+    parameters: {},
+    rawTranscript,
+  }),
 }));
 
 vi.mock('../../src/pipeline/auditLog', () => ({
   logEntry: vi.fn().mockResolvedValue(undefined),
 }));
+
+vi.mock('../../src/pipeline/responseGenerator', async (importOriginal) => {
+  const actual = await importOriginal() as Record<string, unknown>;
+  return {
+    ...actual,
+    generateResponseWithAI: actual.generateResponse,
+  };
+});
 
 // Mock ethics gate with a controllable implementation
 const mockEvaluateEthics = vi.fn<(intent: Intent, browserState: BrowserState) => EthicsDecision>();

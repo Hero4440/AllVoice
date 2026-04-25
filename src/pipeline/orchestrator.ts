@@ -21,9 +21,9 @@ import type {
   BrowserState,
   ExecutionResult,
 } from './types';
-import { parseIntent } from './intentParser';
+import { parseIntentWithAI } from './intentParser';
 import { evaluateEthics } from './ethicsGate';
-import { generateResponse } from './responseGenerator';
+import { generateResponseWithAI } from './responseGenerator';
 import { logEntry } from './auditLog';
 import { assertValidContext } from './contextValidator';
 
@@ -72,8 +72,8 @@ export async function runPipeline(
   // Validate initial context structure (Req 12.4)
   assertValidContext(context, 'Orchestrator:init');
 
-  // Stage 1: Parse intent from transcript
-  context.intent = parseIntent(transcript);
+  // Stage 1: Parse intent from transcript (AI-enhanced with Claude fallback)
+  context.intent = await parseIntentWithAI(transcript);
 
   // Stage 2: Observe browser state (runs in content script via messaging)
   context.browserState = await observeBrowser();
@@ -114,8 +114,8 @@ export async function runPipeline(
     }
   }
 
-  // Stage 5: Generate response (spoken + visual feedback)
-  context.response = generateResponse(context);
+  // Stage 5: Generate response (AI-enhanced with Claude for natural language)
+  context.response = await generateResponseWithAI(context);
 
   // Stage 6: Audit log (persist pipeline invocation)
   await logEntry(context);
