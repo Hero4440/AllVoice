@@ -1,0 +1,50 @@
+Plan, Build, Win at Kiro Spark Challenge (April 24)!
+
+Event description
+Campus lifeFreeProfessional and career development
+Upgrade "Vibe Coding" to Professional Spec-Driven Development at the Kiro Spark Challenge, a 1-day creative design hackathon for Sun Devils. 
+To celebrate ASU's collaboration with Kiro, Enterprise Technology is hosting a Kiro Spark Challenge, a 1-day creative design challenge where teams turn bold ideas into real digital products while showcasing your creative and technical talent. 
+
+The Challenge: turn a mystery prompt into a working app in 24 hours using Kiro, the spec-driven AI IDE that mirrors real-world dev workflows.
+Work in teams of 3 to design and build an application in just 24 hours using Kiro, tackling a challenge prompt revealed live on April 24. Every participant will receive 1,000 Kiro credits to power their projects. Participants will also gain exclusive access to mentorship from industry experts at Kiro and Toptal—the world’s largest fully remote workforce, powered by a global network of more than 20,000 highly vetted professionals in AI, technology, design, finance, marketing, and strategic consulting.
+
+Tracks & prizes ($10k+ in prizes!)
+We are awarding $10,000 in total scholarship prizes across five distinct categories:
+
+Build Track: $1,500
+Technical AI proficiency: How well did you leverage AI to build? 
+
+Collaboration Track: $1,500
+Cross-functional innovation: How did your team innovate through diverse areas of expertise? 
+
+Impact Track: $1,500
+Meaningful, realistic solutions: Does this matter in the real world?
+
+Story Track: $1,500
+Transparent, scalable workflows: Are you leading others with transparent workflows that scale?
+
+Grand prize $4,500
+In addition to a $4,500 grand prize, the top team win an interview with AWS's Agentic AI team! Top hackathon finishers will earn a guaranteed initial interview—seniors for full-time roles and all other classes for internships—with one of the most innovative teams at Amazon Web Services. To be eligible, candidates must meet basic qualifications including being 18+, having experience with at least one general-purpose programming language (Java, Python, C++, C#, Go, Rust, or TypeScript), and enrollment in a Bachelor's degree or above in Computer Science or related STEM field.
+
+Schedule
+8:30am | Check in
+9:00 am | Opening address
+9:30 am | Teams announced
+10:00 am | Mentorship begins with Kiro and Toptal
+5:00 pm | Mentorship ends with Kiro and Toptal 
+6:00 pm | Evening hack (teams are free to depart to preferred work area)
+11:59 p.m. | submission due online
+Breakfast, lunch and evening snacks provided!
+
+How to apply
+
+To simulate professional tech environments, solo applicants should apply by April 17.  Challenge organizers will match you into teams of three, providing a unique opportunity to network and pair program with new colleagues from across the university. Team lineups will be announced live on the morning of the challenge on April 24.
+
+Tool access and training
+Individuals who apply to the Kiro Spark Challenge are expected to attend one upskilling workshop before the live event on April 24. 
+
+Kiro workshops offered:
+
+April 6, 1–3 p.m. (Zoom, RSVP for link)
+April 8, 4–6 p.m. (Zoom, RSVP for link)
+April 10, 9–11 a.m.  (Zoom, RSVP for link)
