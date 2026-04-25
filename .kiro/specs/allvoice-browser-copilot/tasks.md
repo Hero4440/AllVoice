@@ -47,8 +47,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
 - [x] 3. Checkpoint - Verify build and types
   - Ensure the project builds with `npm run build` (or equivalent), all types compile cleanly. Ask the user if questions arise.
 
-- [ ] 4. Ethics Logic Gate — the challenge constraint
-  - [ ] 4.1 Implement default ethics rules in `src/pipeline/ethicsRules.ts`
+- [x] 4. Ethics Logic Gate — the challenge constraint
+  - [x] 4.1 Implement default ethics rules in `src/pipeline/ethicsRules.ts`
     - `PRIVACY_SENSITIVE_FIELD` rule: blocks actions targeting password fields, payment fields, or fields with autocomplete `cc-number`, `cc-csc`, `new-password`
     - `PRIVACY_PII_SUBMISSION` rule: blocks send_message/confirm_pending when message content matches PII patterns (email, phone, SSN)
     - `SAFETY_UNLABELED_CONTROL` rule: blocks click_unlabeled actions
@@ -56,12 +56,12 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Each rule returns `EthicsDecision` with `privacyViolation: true` for privacy rules
     - _Requirements: 4.4, 4.5, 4.6, 4.7, 11.1, 14.1_
 
-  - [ ] 4.2 Implement PII detector utility in `src/utils/piiDetector.ts`
+  - [x] 4.2 Implement PII detector utility in `src/utils/piiDetector.ts`
     - `containsPII(text: string): boolean` — checks for email, phone, SSN patterns
     - Export for use by ethics rules and tests
     - _Requirements: 4.6, 14.1_
 
-  - [ ] 4.3 Implement `evaluateEthics()` pure function in `src/pipeline/ethicsGate.ts`
+  - [x] 4.3 Implement `evaluateEthics()` pure function in `src/pipeline/ethicsGate.ts`
     - Synchronous pure function: `evaluateEthics(intent, browserState, rules?) => EthicsDecision`
     - First blocking rule wins — iterate rules, return first "block" decision
     - Then check for "modify" decisions
@@ -89,8 +89,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Test privacy_violation_stopped event data structure
     - _Requirements: 4.1, 4.2, 4.3, 4.4, 4.5, 4.6, 4.7, 4.10, 14.1, 14.2, 14.5_
 
-- [ ] 5. Intent Parser
-  - [ ] 5.1 Implement `parseIntent()` in `src/pipeline/intentParser.ts`
+- [x] 5. Intent Parser
+  - [x] 5.1 Implement `parseIntent()` in `src/pipeline/intentParser.ts`
     - Keyword-based pattern matching using RegExp rules
     - Support all 7 action types: describe_screen, add_to_cart, purchase, draft_message, send_message, confirm_pending, click_unlabeled
     - Unrecognized transcripts produce `{ action: 'unrecognized', rawTranscript }` intent
@@ -109,8 +109,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Test parameter extraction for draft_message
     - _Requirements: 2.1, 2.2, 2.3_
 
-- [ ] 6. Browser Observer (content script)
-  - [ ] 6.1 Implement `observeBrowser()` in `src/content/browserObserver.ts`
+- [x] 6. Browser Observer (content script)
+  - [x] 6.1 Implement `observeBrowser()` in `src/content/browserObserver.ts`
     - Capture active tab URL, page title, focused element, and interactive elements summary
     - Query DOM for interactive elements: `a, button, input, select, textarea, [role="button"], [role="link"], [tabindex]`
     - Build `ElementSummary` for each element (tagName, role, ariaLabel, textContent, id, selector, hasAccessibleName, type, autocomplete)
@@ -130,8 +130,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Return completed PipelineContext
     - _Requirements: 2.4, 3.2, 4.8, 5.1, 5.2, 5.3, 5.6, 6.7, 7.1, 14.1_
 
-- [ ] 8. Safe Executor (content script)
-  - [ ] 8.1 Implement `executeAction()` in `src/content/safeExecutor.ts`
+- [x] 8. Safe Executor (content script)
+  - [x] 8.1 Implement `executeAction()` in `src/content/safeExecutor.ts`
     - Switch on intent action type to dispatch to specific handlers
     - `describeScreen`: summarize labeled and unlabeled interactive elements from browserState
     - `clickButton` (add_to_cart, purchase, send_message): find target element by selector or heuristic, call `.click()`
@@ -141,8 +141,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Handle missing elements gracefully with error status
     - _Requirements: 5.1, 5.2, 5.3, 5.4, 5.5, 13.5, 13.6_
 
-- [ ] 9. Response Generator
-  - [ ] 9.1 Implement `generateResponse()` and `deliverResponse()` in `src/pipeline/responseGenerator.ts`
+- [x] 9. Response Generator
+  - [x] 9.1 Implement `generateResponse()` and `deliverResponse()` in `src/pipeline/responseGenerator.ts`
     - `generateResponse(context)`: produce `ResponseMessage` based on ethics decision and execution result
     - Blocked: explain why action was blocked (include ethics reason)
     - Error/timeout: describe failure, suggest retry
@@ -150,8 +150,8 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - `deliverResponse(response)`: speak via `chrome.tts.speak()` and send to popup via `chrome.runtime.sendMessage`
     - _Requirements: 6.1, 6.2, 6.3, 6.4, 14.3_
 
-- [ ] 10. Audit Log
-  - [ ] 10.1 Implement `logEntry()` and `getAuditLog()` in `src/pipeline/auditLog.ts`
+- [x] 10. Audit Log
+  - [x] 10.1 Implement `logEntry()` and `getAuditLog()` in `src/pipeline/auditLog.ts`
     - `logEntry(context)`: create `AuditLogEntry` from PipelineContext, persist to `chrome.storage.local` under `allvoice_audit_log` key
     - Store entries newest-first (unshift)
     - Prune entries older than 30 days on each write
@@ -165,7 +165,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Generate random AuditLogEntry objects, serialize/deserialize, verify equivalence
     - **Validates: Requirements 7.5**
 
-- [ ] 11. Checkpoint - Core pipeline complete
+- [x] 11. Checkpoint - Core pipeline complete
   - Ensure all pipeline stages compile and unit tests pass. Verify the Ethics Logic Gate blocks privacy-violating intents. Ask the user if questions arise.
 
 - [x] 12. Content Script entry point and message handling
@@ -249,7 +249,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Basic page styling for demo presentation
     - _Requirements: 13.2, 13.5, 13.6_
 
-- [ ] 17. Checkpoint - Full extension functional
+- [x] 17. Checkpoint - Full extension functional
   - Ensure the extension builds, loads in Chrome, and the demo pages work with voice commands. Verify the Ethics Logic Gate blocks privacy-violating intents on demo pages and the audit log records violations. Ask the user if questions arise.
 
 - [x] 18. Ethics Rules Viewer
@@ -266,7 +266,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Generate random PipelineContext objects with all fields populated, serialize/deserialize, verify deep equality
     - **Validates: Requirements 12.3**
 
-  - [ ] 19.2 Implement malformed PipelineContext rejection
+  - [x] 19.2 Implement malformed PipelineContext rejection
     - Each pipeline stage validates incoming PipelineContext structure
     - Reject malformed context with descriptive error and log rejection to Audit_Log
     - _Requirements: 12.4_
@@ -298,7 +298,7 @@ Hackathon build of a Chrome Extension (Manifest V3) inclusive browser copilot fo
     - Document extension points in code comments
     - _Requirements: 15.3, 15.4, 15.5_
 
-- [ ] 22. Final checkpoint - Complete build verification
+- [x] 22. Final checkpoint - Complete build verification
   - Ensure all tests pass, the extension loads in Chrome, demo pages demonstrate the Ethics Logic Gate privacy stop, audit log records all pipeline invocations, and all UI is accessible. Ask the user if questions arise.
 
 ## Notes

@@ -25,6 +25,7 @@ import { parseIntent } from './intentParser';
 import { evaluateEthics } from './ethicsGate';
 import { generateResponse } from './responseGenerator';
 import { logEntry } from './auditLog';
+import { assertValidContext } from './contextValidator';
 
 /** Timeout duration for action execution (ms) — Requirement 5.6 */
 const ACTION_TIMEOUT_MS = 3000;
@@ -68,11 +69,17 @@ export async function runPipeline(
     response: null,
   };
 
+  // Validate initial context structure (Req 12.4)
+  assertValidContext(context, 'Orchestrator:init');
+
   // Stage 1: Parse intent from transcript
   context.intent = parseIntent(transcript);
 
   // Stage 2: Observe browser state (runs in content script via messaging)
   context.browserState = await observeBrowser();
+
+  // Validate context before ethics gate (Req 12.4)
+  assertValidContext(context, 'Orchestrator:pre-ethics');
 
   // Stage 3: Ethics Logic Gate — MANDATORY, cannot be skipped
   context.ethicsDecision = evaluateEthics(context.intent, context.browserState);

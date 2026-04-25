@@ -1,8 +1,7 @@
-import { describe, it, expect, vi } from 'vitest';
-import { runPipeline } from '../../src/pipeline/orchestrator';
-import type { BrowserState, ExecutionResult, Intent } from '../../src/pipeline/types';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import type { BrowserState, ExecutionResult, Intent, EthicsDecision } from '../../src/pipeline/types';
 
-// Mock the pipeline stage modules
+// Mock all pipeline stage modules at the top level
 vi.mock('../../src/pipeline/intentParser', () => ({
   parseIntent: (rawTranscript: string): Intent => ({
     action: 'add_to_cart',
@@ -15,6 +14,16 @@ vi.mock('../../src/pipeline/intentParser', () => ({
 vi.mock('../../src/pipeline/auditLog', () => ({
   logEntry: vi.fn().mockResolvedValue(undefined),
 }));
+
+// Mock ethics gate with a controllable implementation
+const mockEvaluateEthics = vi.fn<(intent: Intent, browserState: BrowserState) => EthicsDecision>();
+
+vi.mock('../../src/pipeline/ethicsGate', () => ({
+  evaluateEthics: (...args: [Intent, BrowserState]) => mockEvaluateEthics(...args),
+}));
+
+// Import after mocks are set up
+import { runPipeline } from '../../src/pipeline/orchestrator';
 
 const mockBrowserState: BrowserState = {
   url: 'https://example.com/product',
@@ -42,6 +51,18 @@ const mockExecuteAction = vi.fn().mockResolvedValue({
 } satisfies ExecutionResult);
 
 describe('Pipeline Orchestrator', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    // Default: ethics gate allows everything
+    mockEvaluateEthics.mockReturnValue({
+      decision: 'allow',
+      reason: null,
+      ruleId: null,
+      modifiedIntent: null,
+      privacyViolation: false,
+    });
+  });
+
   it('should run all 6 stages and return a complete PipelineContext', async () => {
     const ctx = await runPipeline('add to cart', mockObserveBrowser, mockExecuteAction);
 
@@ -67,27 +88,20 @@ describe('Pipeline Orchestrator', () => {
 
   it('should skip executeAction when ethics blocks', async () => {
     // Override ethics gate to block
-    vi.doMock('../../src/pipeline/ethicsGate', () => ({
-      evaluateEthics: () => ({
-        decision: 'block' as const,
-        reason: 'Targets sensitive field',
-        ruleId: 'PRIVACY_SENSITIVE_FIELD',
-        modifiedIntent: null,
-        privacyViolation: true,
-      }),
-    }));
+    mockEvaluateEthics.mockReturnValue({
+      decision: 'block',
+      reason: 'Targets sensitive field',
+      ruleId: 'PRIVACY_SENSITIVE_FIELD',
+      modifiedIntent: null,
+      privacyViolation: true,
+    });
 
-    // Re-import to pick up the new mock
-    const { runPipeline: runPipelineBlocked } = await import('../../src/pipeline/orchestrator');
     const execAction = vi.fn();
-
-    const ctx = await runPipelineBlocked('click password', mockObserveBrowser, execAction);
+    const ctx = await runPipeline('click password', mockObserveBrowser, execAction);
 
     expect(execAction).not.toHaveBeenCalled();
     expect(ctx.executionResult?.status).toBe('blocked');
     expect(ctx.response?.type).toBe('blocked');
-
-    vi.doUnmock('../../src/pipeline/ethicsGate');
   });
 
   it('should handle action execution errors gracefully', async () => {
