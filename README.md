@@ -94,17 +94,23 @@ Open `http://localhost:3000/` in Chrome.
 
 ## Voice Commands
 
-| Command | Action |
+AllVoice uses a two-tier parsing system: fast keyword matching for common commands, and AI as a fallback for natural language. You can speak naturally — these are just examples:
+
+| Say something like... | What happens |
 |---|---|
-| "What's on this page?" | Accessibility audit of all interactive elements |
-| "Add to cart" | Clicks the Add to Cart button |
-| "Tell me about the headset" | Navigates to product detail page |
-| "Go to cart" | Navigates to cart page |
-| "Checkout" | Proceeds to checkout |
+| "What's on this page?" / "Describe the screen" | Accessibility audit of all interactive elements |
+| "Add to cart" / "Put that in my bag" | Clicks the Add to Cart button |
+| "Tell me about the headset" / "Show me the first product" | Navigates to product detail page |
+| "Go to cart" / "Show my cart" | Navigates to cart page |
+| "Checkout" / "I want to pay" | Proceeds to checkout |
 | "Search for school backpack" | Opens Amazon search results |
-| "Open Amazon" | Opens amazon.com in a new tab |
-| "Meet AllVoice" | Speaks a hardcoded introduction |
-| "Go back" | Returns to previous page |
+| "Open Amazon" / "Go to Google" | Opens a website in a new tab |
+| "Meet AllVoice" / "Who are you?" | Speaks a hardcoded introduction |
+| "Go back" / "Take me home" | Returns to previous page |
+| "Send the message" / "Submit" | Clicks the send/submit button |
+| "Type hello world" / "Draft a message saying..." | Fills in a text field |
+
+AI understands intent beyond exact keywords — say it however feels natural.
 
 ## Keyboard Shortcuts
 
