@@ -14,13 +14,12 @@ import { VoiceButton } from './components/VoiceButton';
 import { ResponsePanel } from './components/ResponsePanel';
 import { AuditLogViewer } from './components/AuditLogViewer';
 import { EthicsRulesViewer } from './components/EthicsRulesViewer';
-import { ApiKeySettings } from './components/ApiKeySettings';
 import {
   createVoiceCapture,
   type VoiceCaptureControls,
 } from './voiceCapture';
 
-type ViewState = 'main' | 'audit-log' | 'ethics-rules' | 'settings';
+type ViewState = 'main' | 'audit-log' | 'ethics-rules';
 
 const PREFERENCES_KEY = 'allvoice_preferences';
 
@@ -218,19 +217,6 @@ export function Popup(): React.ReactElement {
             >
               Ethics Rules
             </button>
-            <button
-              type="button"
-              onClick={() => setView('settings')}
-              aria-label="AI Settings"
-              className={[
-                'px-3 py-1 rounded text-label',
-                'bg-hc-surface text-hc-text border border-hc-border',
-                'focus-visible:outline-focus focus-visible:outline-offset-focus',
-                'cursor-pointer',
-              ].join(' ')}
-            >
-              ⚙ AI
-            </button>
           </nav>
         )}
       </header>
@@ -254,11 +240,6 @@ export function Popup(): React.ReactElement {
       {/* Ethics rules view */}
       {view === 'ethics-rules' && (
         <EthicsRulesViewer onBack={() => setView('main')} />
-      )}
-
-      {/* AI settings view */}
-      {view === 'settings' && (
-        <ApiKeySettings onBack={() => setView('main')} />
       )}
     </div>
   );
