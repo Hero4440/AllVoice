@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Inclusive browser copilot for blind and low-vision users",
   "permissions": ["activeTab", "tts", "storage", "scripting"],
+  "host_permissions": ["https://api.anthropic.com/*"],
   "background": {
     "service_worker": "src/background/serviceWorker.ts"
   },
