@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllVoice Hero Image</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0e17;
+    }
+    .hero {
+      width: 1920px;
+      height: 1080px;
+      background: linear-gradient(135deg, #0a0e17 0%, #0f1629 30%, #131a2b 60%, #0a0e17 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle grid pattern */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(96,165,250,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(96,165,250,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Glow orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.3;
+    }
+    .orb-1 { width: 600px; height: 600px; background: #1e3a5f; top: -100px; left: -100px; }
+    .orb-2 { width: 500px; height: 500px; background: #2d1b69; bottom: -100px; right: 100px; }
+    .orb-3 { width: 400px; height: 400px; background: #134e3a; top: 200px; right: -50px; opacity: 0.2; }
+
+    .content {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      padding: 0 120px;
+      width: 100%;
+    }
+
+    /* Left side: text */
+    .text-side {
+      flex: 1;
+    }
+
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(30,58,95,0.8), rgba(45,27,105,0.8));
+      color: #60a5fa;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 20px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border: 1px solid rgba(96,165,250,0.3);
+    }
+
+    .title {
+      font-size: 82px;
+      font-weight: 900;
+      line-height: 1.05;
+      background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 40%, #34d399 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .subtitle {
+      font-size: 26px;
+      color: #8892a8;
+      line-height: 1.5;
+      max-width: 650px;
+      margin-bottom: 36px;
+    }
+
+    .stats {
+      display: flex;
+      gap: 40px;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-num {
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .stat-label {
+      font-size: 14px;
+      color: #6b7fa8;
+      margin-top: 2px;
+    }
+
+    /* Right side: pipeline visual */
+    .visual-side {
+      width: 520px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .stage {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(19,26,43,0.8);
+      border: 1px solid rgba(42,53,85,0.6);
+    }
+    .stage-num {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .stage-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #e2e8f0;
+    }
+    .stage-desc {
+      font-size: 12px;
+      color: #6b7fa8;
+    }
+
+    .stage-1 .stage-num { background: rgba(30,58,95,0.6); color: #60a5fa; border: 2px solid #60a5fa; }
+    .stage-2 .stage-num { background: rgba(19,78,58,0.6); color: #22d3ee; border: 2px solid #22d3ee; }
+    .stage-3 { background: rgba(40,15,20,0.8); border: 2px solid #f87171; box-shadow: 0 0 40px rgba(248,113,113,0.15); }
+    .stage-3 .stage-num { background: rgba(92,26,26,0.6); color: #f87171; border: 2px solid #f87171; }
+    .stage-3 .stage-text { color: #f87171; }
+    .stage-4 .stage-num { background: rgba(19,78,58,0.6); color: #34d399; border: 2px solid #34d399; }
+    .stage-5 .stage-num { background: rgba(92,58,26,0.6); color: #fbbf24; border: 2px solid #fbbf24; }
+    .stage-6 .stage-num { background: rgba(26,35,64,0.6); color: #8892a8; border: 2px solid #8892a8; }
+
+    .connector {
+      width: 2px;
+      height: 8px;
+      background: rgba(42,53,85,0.6);
+      margin-left: 38px;
+    }
+    .connector-red {
+      background: rgba(248,113,113,0.4);
+      border-left: 2px dashed rgba(248,113,113,0.4);
+      width: 0;
+    }
+
+    /* Bottom bar */
+    .bottom-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: rgba(10,14,23,0.9);
+      border-top: 1px solid rgba(42,53,85,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      padding: 0 40px;
+      z-index: 10;
+    }
+    .tech-tag {
+      font-size: 13px;
+      color: #6b7fa8;
+      font-weight: 500;
+    }
+    .tech-tag span { color: #8892a8; }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <div class="content">
+      <div class="text-side">
+        <div class="badge">Kiro Spark Challenge · Ethics Frame</div>
+        <div class="title">AllVoice</div>
+        <div class="subtitle">An inclusive voice-controlled browser copilot for blind and low-vision users — with a mandatory ethics gate that stops privacy violations before they happen.</div>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-num">6</span>
+            <span class="stat-label">Pipeline Stages</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5</span>
+            <span class="stat-label">Ethics Rules</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">103</span>
+            <span class="stat-label">Tests Passing</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">7:1</span>
+            <span class="stat-label">Contrast Ratio</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="visual-side">
+        <div class="stage stage-1">
+          <div class="stage-num">1</div>
+          <div><div class="stage-text">Intent Parser</div><div class="stage-desc">Voice → structured intent (keyword + Claude AI)</div></div>
+        </div>
+        <div class="connector"></div>
+        <div class="stage stage-2">
+          <div class="stage-num">2</div>
+          <div><div class="stage-text">Browser Observer</div><div class="stage-desc">Captures DOM state & accessibility info</div></div>
+        </div>
+        <div class="connector connector-red"></div>
+        <div class="stage stage-3">
+          <div class="stage-num">3</div>
+          <div><div class="stage-text">🛡️ Ethics Logic Gate</div><div class="stage-desc">MANDATORY — blocks privacy violations, can't be bypassed</div></div>
+        </div>
+        <div class="connector connector-red"></div>
+        <div class="stage stage-4">
+          <div class="stage-num">4</div>
+          <div><div class="stage-text">Safe Executor</div><div class="stage-desc">Only runs if ethics gate allows</div></div>
+        </div>
+        <div class="connector"></div>
+        <div class="stage stage-5">
+          <div class="stage-num">5</div>
+          <div><div class="stage-text">Response Generator</div><div class="stage-desc">Chrome TTS + high-contrast visual panel</div></div>
+        </div>
+        <div class="connector"></div>
+        <div class="stage stage-6">
+          <div class="stage-num">6</div>
+          <div><div class="stage-text">Audit Log</div><div class="stage-desc">Every invocation persisted as structured JSON</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-bar">
+      <span class="tech-tag"><span>TypeScript</span> (strict)</span>
+      <span class="tech-tag"><span>React 18</span></span>
+      <span class="tech-tag"><span>Tailwind CSS</span></span>
+      <span class="tech-tag"><span>Vite</span> + CRXJS</span>
+      <span class="tech-tag"><span>Chrome MV3</span></span>
+      <span class="tech-tag"><span>Web Speech API</span></span>
+      <span class="tech-tag"><span>Chrome TTS</span></span>
+      <span class="tech-tag"><span>Claude API</span></span>
+      <span class="tech-tag">Built with <span>Kiro IDE</span></span>
+    </div>
+  </div>
+</body>
+</html>

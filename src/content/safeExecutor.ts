@@ -287,6 +287,12 @@ export function executeAction(
     case 'go_back':
       return goBack(intent, browserState);
 
+    case 'introduce':
+      return { status: 'success', details: 'AllVoice introduction.' };
+
+    case 'open_website':
+      return { status: 'success', details: 'Opening website.' };
+
     default:
       return {
         status: 'error',

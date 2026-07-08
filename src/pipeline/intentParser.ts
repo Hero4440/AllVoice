@@ -30,6 +30,8 @@ const VALID_ACTIONS: readonly ActionType[] = [
   'navigate',
   'checkout',
   'go_back',
+  'introduce',
+  'open_website',
   'unrecognized',
 ] as const;
 
@@ -45,6 +47,35 @@ interface PatternRule {
 }
 
 const PATTERN_RULES: PatternRule[] = [
+  {
+    pattern: /\b(meet\s+all\s*voice|introduce\s+(yourself|all\s*voice)|say\s+hello|who\s+are\s+you)\b/i,
+    action: 'introduce',
+  },
+  {
+    pattern: /\b(open|go\s+to|launch|visit)\b.*\b(amazon)\b/i,
+    action: 'open_website',
+    extractParams: (): Record<string, string> => ({ url: 'https://www.amazon.com' }),
+  },
+  {
+    pattern: /\b(search|look|find)\b.*\b(school\s*backpack)/i,
+    action: 'open_website',
+    extractParams: (): Record<string, string> => ({ url: 'https://www.amazon.com/s?k=school+backpack&crid=APLHTAPKCJ19&sprefix=schoolbackpack%2Caps%2C365&ref=nb_sb_noss_2', name: 'school backpack on Amazon' }),
+  },
+  {
+    pattern: /\b(open|go\s+to|launch|visit)\b.*\b(google)\b/i,
+    action: 'open_website',
+    extractParams: (): Record<string, string> => ({ url: 'https://www.google.com' }),
+  },
+  {
+    pattern: /\b(open|go\s+to|launch|visit)\b.*\b(youtube)\b/i,
+    action: 'open_website',
+    extractParams: (): Record<string, string> => ({ url: 'https://www.youtube.com' }),
+  },
+  {
+    pattern: /\b(open|go\s+to|launch|visit)\b.*\b(gmail)\b/i,
+    action: 'open_website',
+    extractParams: (): Record<string, string> => ({ url: 'https://mail.google.com' }),
+  },
   {
     pattern: /\b(describe|what'?s on|read|what do you see|what is this)\b.*\b(screen|page)\b/i,
     action: 'describe_screen',

@@ -3,59 +3,321 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllVoice Store — Home</title>
+  <title>Amazon.com. Spend less. Smile more.</title>
   <link rel="stylesheet" href="store.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
 </head>
 <body>
 
-  <header>
-    <div class="header-left">
-      <h1>AllVoice Store</h1>
-      <span class="tagline">Accessible Shopping Demo</span>
-    </div>
-    <nav aria-label="Main navigation">
-      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
-        🛒 Cart (<span id="cart-count">0</span>)
-      </a>
-      <a href="checkout.html" class="nav-link" aria-label="Proceed to checkout">
-        💳 Checkout
-      </a>
-    </nav>
-  </header>
+  <!-- Top Navigation Bar -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Amazon Home">
+      <!-- Inline SVG Amazon-style logo -->
+      <svg class="amazon-logo-svg" viewBox="0 0 120 36" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="26" font-family="Arial" font-weight="700" font-size="26" fill="#fff">amazon</text>
+        <path d="M64 28 Q75 34 90 30" stroke="#F90" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <polygon points="88,27 93,30 88,33" fill="#F90"/>
+      </svg>
+    </a>
 
-  <main>
-    <h2 class="section-heading">Featured Products</h2>
+    <div class="nav-deliver" aria-label="Deliver to Aman, Tempe 85288">
+      <span>Deliver to Aman</span>
+      <span class="deliver-to"><span class="deliver-icon">📍</span> Tempe 85288</span>
+    </div>
+
+    <div class="nav-search" role="search">
+      <select class="nav-search-category" aria-label="Search in">
+        <option>All</option>
+        <option>Electronics</option>
+        <option>Accessibility</option>
+        <option>Books</option>
+      </select>
+      <input type="text" class="nav-search-input" placeholder="Search Amazon" aria-label="Search Amazon">
+      <button class="nav-search-btn" aria-label="Go">🔍</button>
+    </div>
+
+    <div class="nav-flag" aria-label="Choose language">
+      🇺🇸 EN ▾
+    </div>
+
+    <a href="#" class="nav-link-block" aria-label="Hello, Aman. Account & Lists">
+      <span class="nav-line-1">Hello, Aman</span>
+      <span class="nav-line-2">Account & Lists ▾</span>
+    </a>
+
+    <a href="#" class="nav-link-block" aria-label="Returns & Orders">
+      <span class="nav-line-1">Returns</span>
+      <span class="nav-line-2">& Orders</span>
+    </a>
+
+    <a href="cart.html" class="nav-cart" aria-label="Shopping cart, 0 items">
+      <span class="nav-cart-icon">🛒<span class="nav-cart-count" id="cart-count">0</span></span>
+      <span class="nav-cart-label">Cart</span>
+    </a>
+  </nav>
+
+  <!-- Sub Navigation -->
+  <div class="sub-nav">
+    <a href="#" class="sub-nav-hamburger">☰ All</a>
+    <a href="#">Today's Deals</a>
+    <a href="#">Customer Service</a>
+    <a href="#">Amazon Basics</a>
+    <a href="#">Buy Again</a>
+    <a href="#">Accessibility Store</a>
+    <a href="#">Gift Cards</a>
+    <a href="#">Sell</a>
+    <a href="cart.html">Cart</a>
+    <a href="checkout.html">Checkout</a>
+  </div>
+
+  <!-- Hero Carousel -->
+  <div class="hero-carousel">
+    <div class="hero-slide">
+      <div class="hero-slide-content" style="background: linear-gradient(135deg, #1a3a2a 0%, #2d5a3f 40%, #3a7c52 70%, #4a9c62 100%);">
+        <div class="hero-text">
+          <h2>Accessibility Technology</h2>
+          <h1>Shop assistive devices<br>for every need</h1>
+          <p>Explore our curated collection of accessibility products</p>
+        </div>
+        <div style="position:absolute; right:80px; top:50%; transform:translateY(-50%); font-size:120px; opacity:0.8;">🎧 ⌨️ 🦯</div>
+      </div>
+    </div>
+    <button class="hero-arrow left" aria-label="Previous">‹</button>
+    <button class="hero-arrow right" aria-label="Next">›</button>
+    <div class="hero-fade"></div>
+  </div>
+
+  <!-- Recommendation Cards Row (overlapping hero like Amazon) -->
+  <div class="reco-row">
+    <!-- Card 1: Pick up where you left off -->
+    <div class="reco-card">
+      <h3>Pick up where you left off</h3>
+      <div class="reco-grid">
+        <a href="product-headset.html" class="reco-item" aria-label="Wireless Accessibility Headset">
+          <div class="reco-item-img">🎧</div>
+          <span class="reco-item-name">Wireless Accessibility He...</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Braille Display Keyboard">
+          <div class="reco-item-img">⌨️</div>
+          <span class="reco-item-name">Braille Display Keyboard</span>
+        </a>
+        <a href="product-headset.html" class="reco-item" aria-label="Digital Video Magnifier">
+          <div class="reco-item-img">🔍</div>
+          <span class="reco-item-name">Digital Video Magnifier</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Smart Navigation Cane">
+          <div class="reco-item-img">🦯</div>
+          <span class="reco-item-name">Smart Navigation Cane</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 2: Buy again -->
+    <div class="reco-card">
+      <h3>Buy again</h3>
+      <div class="reco-grid">
+        <a href="product-headset.html" class="reco-item" aria-label="Screen Reader Software">
+          <div class="reco-item-img">💿</div>
+          <span class="reco-item-name">Screen Reader Software</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Tactile Stickers Pack">
+          <div class="reco-item-img">🏷️</div>
+          <span class="reco-item-name">Tactile Stickers Pack</span>
+        </a>
+        <a href="product-headset.html" class="reco-item" aria-label="USB-C Audio Adapter">
+          <div class="reco-item-img">🔌</div>
+          <span class="reco-item-name">USB-C Audio Adapter</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Carrying Case">
+          <div class="reco-item-img">💼</div>
+          <span class="reco-item-name">Carrying Case</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 3: Deals related to items you've saved -->
+    <div class="reco-card">
+      <h3>Deals related to items you've saved</h3>
+      <div class="reco-grid">
+        <a href="product-headset.html" class="reco-item" aria-label="Noise-Cancelling Earbuds">
+          <div class="reco-item-img">🎵</div>
+          <span class="reco-item-name">Noise-Cancelling Earbuds</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Ergonomic Mouse">
+          <div class="reco-item-img">🖱️</div>
+          <span class="reco-item-name">Ergonomic Mouse</span>
+        </a>
+        <a href="product-headset.html" class="reco-item" aria-label="Monitor Stand">
+          <div class="reco-item-img">🖥️</div>
+          <span class="reco-item-name">Monitor Stand</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Desk Lamp">
+          <div class="reco-item-img">💡</div>
+          <span class="reco-item-name">Desk Lamp</span>
+        </a>
+      </div>
+      <a href="#" class="see-more">See more deals</a>
+    </div>
+
+    <!-- Card 4: Top picks for you -->
+    <div class="reco-card">
+      <h3>Top picks for you</h3>
+      <div class="reco-grid">
+        <a href="product-headset.html" class="reco-item" aria-label="Bone Conduction Headset">
+          <div class="reco-item-img">🎧</div>
+          <span class="reco-item-name">Bone Conduction Headset</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Braille Notetaker">
+          <div class="reco-item-img">📝</div>
+          <span class="reco-item-name">Braille Notetaker</span>
+        </a>
+        <a href="product-headset.html" class="reco-item" aria-label="Talking Watch">
+          <div class="reco-item-img">⌚</div>
+          <span class="reco-item-name">Talking Watch</span>
+        </a>
+        <a href="product-keyboard.html" class="reco-item" aria-label="Large Print Keyboard">
+          <div class="reco-item-img">⌨️</div>
+          <span class="reco-item-name">Large Print Keyboard</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Product Listings -->
+  <main class="page-content">
+    <h2 class="section-heading">Featured Accessibility Products</h2>
 
     <div class="product-grid">
-      <!-- Product 1 -->
+      <!-- Product 1: Headset -->
       <article class="product-card" aria-label="Wireless Accessibility Headset, $79.99">
-        <div class="product-image" aria-hidden="true">🎧</div>
-        <h3 class="product-name">Wireless Accessibility Headset</h3>
-        <p class="product-price">$79.99</p>
-        <p class="product-desc">Premium bone-conduction headset for screen reader users. Open-ear design, 20hr battery.</p>
+        <span class="product-badge best-seller">Best Seller</span>
+        <div class="product-emoji" aria-hidden="true">🎧</div>
+        <div class="product-name">
+          <a href="product-headset.html">Wireless Bone-Conduction Accessibility Headset — Open-Ear Design, 20hr Battery, Screen Reader Optimized</a>
+        </div>
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">2,847</span>
+        </div>
+        <div class="product-price">
+          <span class="price-symbol">$</span><span class="price-whole">79</span><span class="price-fraction">99</span>
+        </div>
+        <div class="product-delivery">
+          <span class="prime-badge">prime</span> <span class="free-delivery">FREE delivery</span> <strong>Tomorrow</strong>
+        </div>
         <div class="product-actions">
-          <a href="product-headset.html" class="btn-primary" aria-label="Tell me about Wireless Accessibility Headset">View Details</a>
-          <button type="button" class="btn-secondary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add Wireless Accessibility Headset to cart">Add to Cart</button>
+          <button type="button" class="btn-amazon-primary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add Wireless Accessibility Headset to cart">Add to Cart</button>
         </div>
       </article>
 
-      <!-- Product 2 -->
+      <!-- Product 2: Keyboard -->
       <article class="product-card" aria-label="Braille Display Keyboard, $249.99">
-        <div class="product-image" aria-hidden="true">⌨️</div>
-        <h3 class="product-name">Braille Display Keyboard</h3>
-        <p class="product-price">$249.99</p>
-        <p class="product-desc">40-cell refreshable braille display with full keyboard. USB-C and Bluetooth.</p>
+        <span class="product-badge choice">Amazon's Choice</span>
+        <div class="product-emoji" aria-hidden="true">⌨️</div>
+        <div class="product-name">
+          <a href="product-keyboard.html">40-Cell Refreshable Braille Display Keyboard — USB-C & Bluetooth, JAWS, NVDA, VoiceOver Compatible</a>
+        </div>
+        <div class="product-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">1,203</span>
+        </div>
+        <div class="product-price">
+          <span class="price-symbol">$</span><span class="price-whole">249</span><span class="price-fraction">99</span>
+        </div>
+        <div class="product-delivery">
+          <span class="prime-badge">prime</span> <span class="free-delivery">FREE delivery</span> <strong>Wed, Apr 29</strong>
+        </div>
         <div class="product-actions">
-          <a href="product-keyboard.html" class="btn-primary" aria-label="Tell me about Braille Display Keyboard">View Details</a>
-          <button type="button" class="btn-secondary add-to-cart-btn" data-product="keyboard" data-name="Braille Display Keyboard" data-price="249.99" aria-label="Add Braille Display Keyboard to cart">Add to Cart</button>
+          <button type="button" class="btn-amazon-primary add-to-cart-btn" data-product="keyboard" data-name="Braille Display Keyboard" data-price="249.99" aria-label="Add Braille Display Keyboard to cart">Add to Cart</button>
+        </div>
+      </article>
+
+      <!-- Product 3: Magnifier -->
+      <article class="product-card" aria-label="Digital Video Magnifier, $189.99">
+        <div class="product-emoji" aria-hidden="true">🔍</div>
+        <div class="product-name">
+          <a href="product-headset.html">Portable Digital Video Magnifier — 5-inch HD Screen, 4x-32x Zoom, LED Lighting, Rechargeable</a>
+        </div>
+        <div class="product-rating">
+          <span class="stars">★★★★☆</span>
+          <span class="rating-count">956</span>
+        </div>
+        <div class="product-price">
+          <span class="price-symbol">$</span><span class="price-whole">189</span><span class="price-fraction">99</span>
+        </div>
+        <div class="product-delivery">
+          <span class="prime-badge">prime</span> <span class="free-delivery">FREE delivery</span> <strong>Thu, Apr 30</strong>
+        </div>
+        <div class="product-actions">
+          <button type="button" class="btn-amazon-primary add-to-cart-btn" data-product="magnifier" data-name="Digital Video Magnifier" data-price="189.99" aria-label="Add Digital Video Magnifier to cart">Add to Cart</button>
+        </div>
+      </article>
+
+      <!-- Product 4: Smart Cane -->
+      <article class="product-card" aria-label="Smart Navigation Cane, $149.99">
+        <span class="product-badge">Limited Deal</span>
+        <div class="product-emoji" aria-hidden="true">🦯</div>
+        <div class="product-name">
+          <a href="product-keyboard.html">Smart Navigation Cane with Ultrasonic Sensors — Vibration Alerts, GPS, Foldable, 12hr Battery</a>
+        </div>
+        <div class="product-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count">634</span>
+        </div>
+        <div class="product-price">
+          <span class="price-symbol">$</span><span class="price-whole">149</span><span class="price-fraction">99</span>
+        </div>
+        <div class="product-delivery">
+          <span class="prime-badge">prime</span> <span class="free-delivery">FREE delivery</span> <strong>Tomorrow</strong>
+        </div>
+        <div class="product-actions">
+          <button type="button" class="btn-amazon-primary add-to-cart-btn" data-product="cane" data-name="Smart Navigation Cane" data-price="149.99" aria-label="Add Smart Navigation Cane to cart">Add to Cart</button>
         </div>
       </article>
     </div>
   </main>
 
-  <footer>
-    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
+  <!-- Footer -->
+  <div class="footer-back-top" onclick="window.scrollTo(0,0)">
+    <a href="#">Back to top</a>
+  </div>
+  <footer class="footer-main">
+    <div class="footer-col">
+      <h4>Get to Know Us</h4>
+      <a href="#">Careers</a>
+      <a href="#">Blog</a>
+      <a href="#">About Amazon</a>
+      <a href="#">Investor Relations</a>
+      <a href="#">Amazon Devices</a>
+    </div>
+    <div class="footer-col">
+      <h4>Make Money with Us</h4>
+      <a href="#">Sell products on Amazon</a>
+      <a href="#">Sell on Amazon Business</a>
+      <a href="#">Become an Affiliate</a>
+      <a href="#">Advertise Your Products</a>
+    </div>
+    <div class="footer-col">
+      <h4>Amazon Payment Products</h4>
+      <a href="#">Amazon Business Card</a>
+      <a href="#">Shop with Points</a>
+      <a href="#">Reload Your Balance</a>
+      <a href="#">Amazon Currency Converter</a>
+    </div>
+    <div class="footer-col">
+      <h4>Let Us Help You</h4>
+      <a href="#">Amazon and COVID-19</a>
+      <a href="#">Your Account</a>
+      <a href="#">Your Orders</a>
+      <a href="#">Shipping Rates & Policies</a>
+      <a href="#">Returns & Replacements</a>
+      <a href="#">Help</a>
+    </div>
   </footer>
+  <div class="footer-bottom">
+    <div style="font-size:16px; font-weight:700;">amazon<span style="color:#F90;">.com</span></div>
+    <div style="margin-top:8px;">© 1996-2026, Amazon.com, Inc. or its affiliates — <em>AllVoice Demo</em></div>
+  </div>
 
   <script src="store.js"></script>
 </body>

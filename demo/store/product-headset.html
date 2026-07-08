@@ -3,58 +3,122 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AllVoice Store — Wireless Accessibility Headset</title>
+  <title>Amazon.com: Wireless Bone-Conduction Accessibility Headset</title>
   <link rel="stylesheet" href="store.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📦</text></svg>">
 </head>
 <body>
 
-  <header>
-    <div class="header-left">
-      <h1>AllVoice Store</h1>
-      <span class="tagline">Accessible Shopping Demo</span>
+  <!-- Top Navigation -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <a href="index.html" class="nav-logo" aria-label="Amazon Home">
+      <span class="nav-logo-text">amazon<span class="logo-suffix">.com</span></span>
+    </a>
+    <div class="nav-deliver">
+      <span>Deliver to</span>
+      <span class="deliver-to">📍 New York 10001</span>
     </div>
-    <nav aria-label="Main navigation">
-      <a href="index.html" class="nav-link" aria-label="Back to store home">🏠 Home</a>
-      <a href="cart.html" class="nav-link" aria-label="View cart (0 items)">
-        🛒 Cart (<span id="cart-count">0</span>)
-      </a>
-    </nav>
-  </header>
+    <div class="nav-search" role="search">
+      <select class="nav-search-category" aria-label="Search category"><option>All</option></select>
+      <input type="text" class="nav-search-input" placeholder="Search Amazon" aria-label="Search Amazon">
+      <button class="nav-search-btn" aria-label="Search">🔍</button>
+    </div>
+    <a href="#" class="nav-link-block" aria-label="Account & Lists">
+      <span class="nav-line-1">Hello, sign in</span>
+      <span class="nav-line-2">Account & Lists ▾</span>
+    </a>
+    <a href="#" class="nav-link-block" aria-label="Returns & Orders">
+      <span class="nav-line-1">Returns</span>
+      <span class="nav-line-2">& Orders</span>
+    </a>
+    <a href="cart.html" class="nav-cart" aria-label="Shopping cart, 0 items">
+      <span class="nav-cart-icon">🛒<span class="nav-cart-count" id="cart-count">0</span></span>
+      <span>Cart</span>
+    </a>
+  </nav>
+  <div class="sub-nav">
+    <a href="#">☰ All</a>
+    <a href="#">Today's Deals</a>
+    <a href="#">Customer Service</a>
+    <a href="#">Accessibility Store</a>
+  </div>
 
-  <main>
+  <main class="page-content">
     <nav class="breadcrumb" aria-label="Breadcrumb">
-      <a href="index.html">Home</a> &rsaquo; Wireless Accessibility Headset
+      <a href="index.html">Home</a> › <a href="index.html">Electronics</a> › <a href="index.html">Accessibility</a> › Headsets
     </nav>
 
-    <section class="product-detail" aria-label="Product details for Wireless Accessibility Headset">
-      <div class="product-image" aria-hidden="true">🎧</div>
-      <h2>Wireless Accessibility Headset</h2>
-      <p class="product-price">$79.99</p>
-      <p class="product-desc">
-        Premium bone-conduction headset designed specifically for screen reader users.
-        The open-ear design lets you hear your surroundings while listening to spoken
-        feedback from assistive technology. Perfect for navigating the web hands-free.
-      </p>
-
-      <h3 style="color:#FFD700;font-size:16px;margin-top:8px;">Specifications</h3>
-      <ul class="specs-list">
-        <li><strong>Battery:</strong> 20 hours continuous use</li>
-        <li><strong>Connectivity:</strong> Bluetooth 5.3, USB-C charging</li>
-        <li><strong>Weight:</strong> 29g titanium frame</li>
-        <li><strong>Compatibility:</strong> Works with all screen readers (JAWS, NVDA, VoiceOver)</li>
-        <li><strong>Water resistance:</strong> IP55 rated</li>
-      </ul>
-
-      <div class="product-actions">
-        <button type="button" class="btn-primary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add Wireless Accessibility Headset to cart">Add to Cart</button>
-        <a href="cart.html" class="btn-secondary" aria-label="Go to cart">View Cart</a>
+    <div class="product-detail-layout">
+      <!-- Left: Image -->
+      <div class="product-detail-image">
+        <div class="product-emoji">🎧</div>
       </div>
-    </section>
+
+      <!-- Center: Info -->
+      <div class="product-detail-info">
+        <h1>Wireless Bone-Conduction Accessibility Headset — Open-Ear Design, 20hr Battery, Screen Reader Optimized, Bluetooth 5.3</h1>
+
+        <div class="detail-rating">
+          <span class="stars">★★★★★</span>
+          <span class="rating-count" style="color:#007185;">2,847 ratings</span>
+          <span style="color:#565959; font-size:13px;">| 500+ bought in past month</span>
+        </div>
+
+        <div class="detail-price-block">
+          <div class="detail-savings">-20% <span style="color:#0F1111; font-weight:400; font-size:14px;">Limited time deal</span></div>
+          <div class="detail-price">
+            <span class="price-symbol">$</span><span class="price-whole">79</span><span class="price-fraction">99</span>
+          </div>
+          <div class="detail-list-price">
+            List Price: <span class="strikethrough">$99.99</span>
+          </div>
+        </div>
+
+        <div class="detail-about">
+          <h3>About this item</h3>
+          <ul class="detail-features">
+            <li><strong>Open-Ear Design:</strong> Bone-conduction technology lets you hear your surroundings while listening to screen reader output</li>
+            <li><strong>20-Hour Battery:</strong> All-day use with quick-charge — 10 minutes gives 2 hours of playback</li>
+            <li><strong>Screen Reader Optimized:</strong> Tuned audio profile for speech clarity with JAWS, NVDA, and VoiceOver</li>
+            <li><strong>Bluetooth 5.3:</strong> Stable, low-latency connection with multipoint pairing (2 devices simultaneously)</li>
+            <li><strong>IP67 Waterproof:</strong> Sweat and rain resistant for outdoor use</li>
+            <li><strong>Lightweight Comfort:</strong> Only 29g titanium frame with memory-foam pads</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Right: Buy Box -->
+      <div class="buy-box">
+        <div class="buy-price">
+          <span class="price-symbol">$</span><span class="price-whole">79</span><span class="price-fraction">99</span>
+        </div>
+        <div class="buy-delivery">
+          <span class="free">FREE delivery</span> <strong>Tomorrow, Apr 25</strong><br>
+          Order within <span style="color:#007600;">8 hrs 23 mins</span>
+        </div>
+        <div class="buy-stock">In Stock</div>
+        <div class="buy-qty">
+          <label for="qty-select">Qty:</label>
+          <select id="qty-select" aria-label="Quantity">
+            <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+          </select>
+        </div>
+        <button type="button" class="btn-amazon-primary add-to-cart-btn" data-product="headset" data-name="Wireless Accessibility Headset" data-price="79.99" aria-label="Add to Cart">Add to Cart</button>
+        <a href="checkout.html" class="btn-amazon-orange" aria-label="Buy Now">Buy Now</a>
+        <div class="secure-note">🔒 Secure transaction</div>
+        <div class="buy-meta">
+          Ships from <span>Amazon.com</span><br>
+          Sold by <span>AccessTech Official</span>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>
-    <strong>AllVoice Store</strong> — Inclusive Browser Copilot Demo &middot; Kiro Spark Challenge
-  </footer>
+  <div class="footer-back-top" onclick="window.scrollTo(0,0)"><a href="#">Back to top</a></div>
+  <div class="footer-bottom">
+    <div>amazon <span style="color:#F90;">.com</span></div>
+    <div style="margin-top:8px;">© 1996-2026, Amazon.com, Inc. or its affiliates — <em>AllVoice Demo</em></div>
+  </div>
 
   <script src="store.js"></script>
 </body>

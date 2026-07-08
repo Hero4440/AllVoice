@@ -1,9 +1,16 @@
 /**
- * AllVoice Store — Shared JavaScript for the demo store.
- * Manages cart state in localStorage and provides toast notifications.
+ * AllVoice Store — Amazon-style demo store JavaScript.
+ * Manages cart state in localStorage with Amazon-like UI rendering.
  */
 
 const CART_KEY = 'allvoice_store_cart';
+
+const PRODUCT_EMOJIS = {
+  headset: '🎧',
+  keyboard: '⌨️',
+  magnifier: '🔍',
+  cane: '🦯',
+};
 
 /** Get cart from localStorage */
 function getCart() {
@@ -28,12 +35,26 @@ function addToCart(productId, name, price) {
     cart.push({ id: productId, name, price: parseFloat(price), qty: 1 });
   }
   saveCart(cart);
-  showToast(`Added "${name}" to cart`);
+  showToast(`✓ Added to Cart: "${name}"`);
 }
 
 /** Remove item from cart */
 function removeFromCart(productId) {
   const cart = getCart().filter(item => item.id !== productId);
+  saveCart(cart);
+}
+
+/** Update quantity */
+function updateQty(productId, newQty) {
+  const cart = getCart();
+  const item = cart.find(i => i.id === productId);
+  if (item) {
+    item.qty = parseInt(newQty, 10);
+    if (item.qty <= 0) {
+      removeFromCart(productId);
+      return;
+    }
+  }
   saveCart(cart);
 }
 
@@ -44,9 +65,9 @@ function updateCartCount() {
   const el = document.getElementById('cart-count');
   if (el) el.textContent = total.toString();
   // Update aria-label on cart link
-  const cartLink = document.querySelector('[aria-label*="cart"]');
-  if (cartLink && cartLink.tagName === 'A') {
-    cartLink.setAttribute('aria-label', `View cart (${total} items)`);
+  const cartLink = document.querySelector('.nav-cart');
+  if (cartLink) {
+    cartLink.setAttribute('aria-label', `Shopping cart, ${total} items`);
   }
 }
 
@@ -81,58 +102,73 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Bind remove buttons (cart page)
-  document.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      removeFromCart(btn.dataset.product);
-      location.reload();
-    });
-  });
-
-  // Render cart page if on cart.html
+  // Render cart page
   const cartContainer = document.getElementById('cart-items-container');
   if (cartContainer) renderCart(cartContainer);
 
-  // Render checkout summary if on checkout.html
+  // Render cart sidebar
+  const cartSidebar = document.getElementById('cart-sidebar');
+  if (cartSidebar) renderCartSidebar(cartSidebar);
+
+  // Render checkout summary
   const checkoutSummary = document.getElementById('checkout-summary');
   if (checkoutSummary) renderCheckoutSummary(checkoutSummary);
 });
 
-/** Render cart items on cart page */
+/** Render Amazon-style cart items */
 function renderCart(container) {
   const cart = getCart();
   if (cart.length === 0) {
     container.innerHTML = `
       <div class="empty-cart" role="status">
-        <p>Your cart is empty.</p>
-        <a href="index.html" class="btn-primary" style="margin-top:16px;">Browse Products</a>
+        <h2 style="font-size:28px; font-weight:400; margin-bottom:12px;">Your Amazon Cart is empty</h2>
+        <p style="font-size:14px;">Check your Saved for later items below or <a href="index.html">continue shopping</a>.</p>
       </div>`;
     return;
   }
 
-  let html = '<div class="cart-items">';
+  let html = '';
   cart.forEach(item => {
+    const emoji = PRODUCT_EMOJIS[item.id] || '📦';
+    const qtyOptions = [1,2,3,4,5,6,7,8,9,10].map(n =>
+      `<option value="${n}" ${n === item.qty ? 'selected' : ''}>Qty: ${n}</option>`
+    ).join('');
+
     html += `
       <div class="cart-item" aria-label="${item.name}, $${item.price.toFixed(2)}, quantity ${item.qty}">
-        <div class="cart-item-info">
-          <span class="cart-item-name">${item.name}</span>
-          <span class="cart-item-price">$${item.price.toFixed(2)} × ${item.qty}</span>
+        <div class="cart-item-image">
+          <div class="product-emoji">${emoji}</div>
         </div>
-        <button class="btn-danger remove-from-cart-btn" data-product="${item.id}" aria-label="Remove ${item.name} from cart">Remove</button>
+        <div class="cart-item-details">
+          <h3>${item.name}</h3>
+          <div class="item-stock">In Stock</div>
+          <div class="item-shipping">Eligible for FREE Shipping</div>
+          <div class="cart-item-actions">
+            <select aria-label="Change quantity for ${item.name}" onchange="updateQty('${item.id}', this.value); location.reload();">
+              ${qtyOptions}
+            </select>
+            <span class="divider">|</span>
+            <button type="button" class="remove-from-cart-btn" data-product="${item.id}" aria-label="Delete ${item.name} from cart">Delete</button>
+            <span class="divider">|</span>
+            <a href="#">Save for later</a>
+            <span class="divider">|</span>
+            <a href="#">Compare with similar items</a>
+          </div>
+        </div>
+        <div class="cart-item-price">$${(item.price * item.qty).toFixed(2)}</div>
       </div>`;
   });
-  html += '</div>';
 
   const total = getCartTotal();
+  const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
   html += `
-    <div class="cart-summary">
-      <span class="cart-total">Total: $${total.toFixed(2)}</span>
-      <a href="checkout.html" class="btn-primary" aria-label="Proceed to checkout, total $${total.toFixed(2)}">Checkout</a>
+    <div class="cart-subtotal">
+      Subtotal (${totalQty} item${totalQty !== 1 ? 's' : ''}): <b>$${total.toFixed(2)}</b>
     </div>`;
 
   container.innerHTML = html;
 
-  // Re-bind remove buttons after render
+  // Bind remove buttons
   container.querySelectorAll('.remove-from-cart-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       removeFromCart(btn.dataset.product);
@@ -141,18 +177,44 @@ function renderCart(container) {
   });
 }
 
+/** Render cart sidebar */
+function renderCartSidebar(sidebar) {
+  const cart = getCart();
+  const total = getCartTotal();
+  const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+
+  if (cart.length === 0) {
+    sidebar.style.display = 'none';
+    return;
+  }
+
+  sidebar.innerHTML = `
+    <div class="subtotal-text">
+      Subtotal (${totalQty} item${totalQty !== 1 ? 's' : ''}): <b>$${total.toFixed(2)}</b>
+    </div>
+    <label class="gift-option">
+      <input type="checkbox"> This order contains a gift
+    </label>
+    <a href="checkout.html" class="btn-amazon-primary" style="display:block; margin-top:12px;" aria-label="Proceed to checkout, total $${total.toFixed(2)}">Proceed to checkout</a>
+  `;
+}
+
 /** Render checkout summary */
 function renderCheckoutSummary(container) {
   const cart = getCart();
   const total = getCartTotal();
+  const totalQty = cart.reduce((sum, i) => sum + i.qty, 0);
+
   if (cart.length === 0) {
-    container.innerHTML = '<p style="color:#E0E0E0;">No items in cart.</p>';
+    container.innerHTML = '<p style="color:#565959;">No items in cart.</p>';
     return;
   }
+
   let html = '';
-  cart.forEach(item => {
-    html += `<p style="color:#E0E0E0;">${item.name} × ${item.qty} — <strong style="color:#FFD700;">$${(item.price * item.qty).toFixed(2)}</strong></p>`;
-  });
-  html += `<p style="margin-top:12px;font-size:20px;font-weight:700;color:#FFD700;">Total: $${total.toFixed(2)}</p>`;
+  html += `<div class="summary-line"><span>Items (${totalQty}):</span><span>$${total.toFixed(2)}</span></div>`;
+  html += `<div class="summary-line"><span>Shipping & handling:</span><span>$0.00</span></div>`;
+  html += `<div class="summary-line"><span>Estimated tax:</span><span>$${(total * 0.08).toFixed(2)}</span></div>`;
+  html += `<div class="summary-line total"><span>Order total:</span><span>$${(total * 1.08).toFixed(2)}</span></div>`;
+
   container.innerHTML = html;
 }

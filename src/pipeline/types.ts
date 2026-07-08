@@ -23,6 +23,8 @@ export type ActionType =
   | 'navigate'
   | 'checkout'
   | 'go_back'
+  | 'introduce'
+  | 'open_website'
   | 'unrecognized';
 
 // ---------------------------------------------------------------------------
