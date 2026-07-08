@@ -94,7 +94,7 @@ Open `http://localhost:3000/` in Chrome.
 
 ## Voice Commands
 
-AllVoice uses a two-tier parsing system: fast keyword matching for common commands, and Claude AI as a fallback for natural language. You can speak naturally — these are just examples:
+AllVoice uses a two-tier parsing system: fast keyword matching for common commands, and AI as a fallback for natural language. You can speak naturally — these are just examples:
 
 | Say something like... | What happens |
 |---|---|
@@ -110,7 +110,7 @@ AllVoice uses a two-tier parsing system: fast keyword matching for common comman
 | "Send the message" / "Submit" | Clicks the send/submit button |
 | "Type hello world" / "Draft a message saying..." | Fills in a text field |
 
-Claude AI understands intent beyond exact keywords — say it however feels natural.
+AI understands intent beyond exact keywords — say it however feels natural.
 
 ## Keyboard Shortcuts
 
