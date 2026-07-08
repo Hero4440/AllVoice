@@ -50,6 +50,12 @@ export function findTargetElement(
           e => /send/i.test(e.textContent) && e.tagName === 'button',
         ) ?? null
       );
+    case 'checkout':
+      return (
+        browserState.interactiveElements.find(e =>
+          /checkout/i.test(e.textContent) || /checkout/i.test(e.ariaLabel ?? ''),
+        ) ?? null
+      );
     default:
       return null;
   }
@@ -69,8 +75,8 @@ export const sensitiveFieldRule: EthicsRule = {
   description:
     'Blocks actions targeting password, payment, or sensitive autocomplete fields (cc-number, cc-csc, new-password).',
   evaluate: (intent: Intent, browserState: BrowserState): EthicsDecision | null => {
-    // Read-only actions are always safe — never block describe_screen
-    if (intent.action === 'describe_screen') return null;
+    // Read-only and navigation actions are always safe — never block them
+    if (intent.action === 'describe_screen' || intent.action === 'navigate' || intent.action === 'go_back' || intent.action === 'checkout') return null;
 
     const target = findTargetElement(intent, browserState);
     if (!target) return null;
@@ -153,6 +159,7 @@ export const unlabeledControlRule: EthicsRule = {
 // ---------------------------------------------------------------------------
 
 const READ_ONLY_ACTIONS: ActionType[] = ['describe_screen'];
+const NAVIGATION_ACTIONS: ActionType[] = ['navigate', 'go_back', 'checkout'];
 
 export const restrictedContextRule: EthicsRule = {
   id: 'CONTEXT_RESTRICTED',
@@ -162,6 +169,7 @@ export const restrictedContextRule: EthicsRule = {
   evaluate: (intent: Intent, browserState: BrowserState): EthicsDecision | null => {
     if (!browserState.contextFlags.includes('restricted-context')) return null;
     if (READ_ONLY_ACTIONS.includes(intent.action)) return null;
+    if (NAVIGATION_ACTIONS.includes(intent.action)) return null;
 
     return {
       decision: 'block',

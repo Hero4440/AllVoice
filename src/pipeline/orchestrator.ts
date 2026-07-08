@@ -21,9 +21,9 @@ import type {
   BrowserState,
   ExecutionResult,
 } from './types';
-import { parseIntent } from './intentParser';
+import { parseIntentWithAI } from './intentParser';
 import { evaluateEthics } from './ethicsGate';
-import { generateResponse } from './responseGenerator';
+import { generateResponseWithAI, deliverResponse } from './responseGenerator';
 import { logEntry } from './auditLog';
 import { assertValidContext } from './contextValidator';
 
@@ -72,8 +72,38 @@ export async function runPipeline(
   // Validate initial context structure (Req 12.4)
   assertValidContext(context, 'Orchestrator:init');
 
-  // Stage 1: Parse intent from transcript
-  context.intent = parseIntent(transcript);
+  // Stage 1: Parse intent from transcript (AI-enhanced with Claude fallback)
+  context.intent = await parseIntentWithAI(transcript);
+
+  // Special case: introduce action — skip pipeline, deliver hardcoded intro
+  if (context.intent.action === 'introduce') {
+    context.ethicsDecision = { decision: 'allow', reason: null, ruleId: null, modifiedIntent: null, privacyViolation: false };
+    context.executionResult = { status: 'success', details: 'AllVoice introduction.' };
+    context.response = {
+      text: "Hi, I'm AllVoice — your inclusive browser copilot. I help blind and low-vision users navigate the web using just their voice. I can read what's on the page, click buttons, add items to your cart, and guide you through checkout. And I have a built-in ethics gate that protects your privacy — I'll never touch your passwords, payment fields, or personal data. Just speak, and I'll take care of the rest. Let me show you what I can do.",
+      type: 'success',
+    };
+    await logEntry(context);
+    deliverResponse(context.response);
+    return context;
+  }
+
+  // Special case: open_website — open URL in new tab, skip content script
+  if (context.intent.action === 'open_website') {
+    const url = context.intent.parameters['url'];
+    if (url) {
+      await chrome.tabs.create({ url });
+    }
+    context.ethicsDecision = { decision: 'allow', reason: null, ruleId: null, modifiedIntent: null, privacyViolation: false };
+    context.executionResult = { status: 'success', details: `Opened ${url} in a new tab.` };
+    context.response = {
+      text: `Opening ${context.intent.parameters['name'] ?? url.replace('https://www.', '').replace('https://', '')} for you.`,
+      type: 'success',
+    };
+    await logEntry(context);
+    deliverResponse(context.response);
+    return context;
+  }
 
   // Stage 2: Observe browser state (runs in content script via messaging)
   context.browserState = await observeBrowser();
@@ -114,8 +144,8 @@ export async function runPipeline(
     }
   }
 
-  // Stage 5: Generate response (spoken + visual feedback)
-  context.response = generateResponse(context);
+  // Stage 5: Generate response (AI-enhanced with Claude for natural language)
+  context.response = await generateResponseWithAI(context);
 
   // Stage 6: Audit log (persist pipeline invocation)
   await logEntry(context);

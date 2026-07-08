@@ -20,6 +20,11 @@ export type ActionType =
   | 'send_message'
   | 'confirm_pending'
   | 'click_unlabeled'
+  | 'navigate'
+  | 'checkout'
+  | 'go_back'
+  | 'introduce'
+  | 'open_website'
   | 'unrecognized';
 
 // ---------------------------------------------------------------------------

@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Generate LinkedIn Milestone Post",
+  "description": "Manually triggered hook that drafts a LinkedIn post about the latest AllVoice development milestone, matching the voice, format, and hashtags of the existing posts in docs/linkedin-posts/.",
+  "version": "1",
+  "when": {
+    "type": "userTriggered"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Draft a LinkedIn post about the most recent AllVoice development milestone.\n\nSteps:\n1. Review recent changes (git log / recently modified files) to identify the milestone worth highlighting — e.g., a new pipeline stage, the ethics gate, Claude AI integration, accessibility work, tests, or a demo.\n2. Read the existing posts in docs/linkedin-posts/ (post-1-ethics-pipeline.md, post-2-accessibility-ai.md, post-3-demo-and-kiro.md) to match their voice and structure: a punchy hook, concrete technical detail, an accessibility/ethics angle, the tech stack, and a short reflection.\n3. Keep it factual and grounded in what is actually in the repo — no invented metrics. Use real numbers only if verifiable (e.g., 103 tests, 6-stage pipeline, 4 ethics rules, 8 hooks, 5 steering files).\n4. End with relevant hashtags consistent with the existing posts (e.g., #KiroSparkChallenge #KiroIDE #Accessibility #EthicsInAI).\n5. Save the draft as a new file in docs/linkedin-posts/ named post-<short-slug>.md and show it to me for review.\n\nDo not fabricate awards, dates, or engagement numbers."
+  }
+}
